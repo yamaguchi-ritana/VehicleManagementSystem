@@ -84,8 +84,11 @@
         Console.WriteLine(diyy.ToString("dd"))
 
         For i = 0 To lblCld.Count - 1
-
+            If day = CInt(diy.ToString("dd")) Then
+                Exit For
+            End If
             If index <= i Then
+
                 If Me.lblCldZero.Name = lblCld(i).ToString Then
                     day += 1
                     Me.lblCldZero.Text = day
@@ -214,10 +217,71 @@
                     Me.lblCldFortyOne.Text = day
                 End If
 
-                If index <= i Then
-
-                End If
             End If
+        Next
+
+        Dim aaaa As Integer = 0
+        Dim bbbb As Integer = 0
+
+        For i = 0 To 5
+            aaaa += 1
+
+            If String.IsNullOrWhiteSpace(Me.lblCldZero.Text) Then
+                Me.lblCldZero.Text = CStr(aaaa)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldOne.Text) Then
+                Me.lblCldOne.Text = CStr(aaaa)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldTwo.Text) Then
+                Me.lblCldTwo.Text = CStr(aaaa)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThree.Text) Then
+                Me.lblCldThree.Text = CStr(aaaa)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldFour.Text) Then
+                Me.lblCldFour.Text = CStr(aaaa)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldFive.Text) Then
+                Me.lblCldFive.Text = CStr(aaaa)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldSix.Text) Then
+                Me.lblCldSix.Text = CStr(aaaa)
+            End If
+
+        Next
+
+        For i = 0 To 10
+            bbbb += 1
+
+            If String.IsNullOrWhiteSpace(Me.lblCldTwentyEight.Text) Then
+                Me.lblCldTwentyEight.Text = Single.Parse(bbbb)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldTwentyNine.Text) Then
+                Me.lblCldTwentyNine.Text = Single.Parse(bbbb)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirty.Text) Then
+                Me.lblCldThirty.Text = Single.Parse(bbbb)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtyOne.Text) Then
+                Me.lblCldThirtyOne.Text = Single.Parse(bbbb)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtyTwo.Text) Then
+                Me.lblCldThirtyTwo.Text = Single.Parse(bbbb)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtyThree.Text) Then
+                Me.lblCldThirtyThree.Text = Single.Parse(bbbb)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtyFour.Text) Then
+                Me.lblCldThirtyFour.Text = Single.Parse(bbbb)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtyFive.Text) Then
+                Me.lblCldThirtyFive.Text = Single.Parse(bbbb)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtySix.Text) Then
+                Me.lblCldThirtySix.Text = Single.Parse(bbbb)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtySeven.Text) Then
+                Me.lblCldThirtySeven.Text = Single.Parse(bbbb)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtyEight.Text) Then
+                Me.lblCldThirtyEight.Text = Single.Parse(bbbb)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtyNine.Text) Then
+                Me.lblCldThirtyNine.Text = Single.Parse(bbbb)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldForty.Text) Then
+                Me.lblCldForty.Text = Single.Parse(bbbb)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldFortyOne.Text) Then
+                Me.lblCldFortyOne.Text = Single.Parse(bbbb)
+            End If
+
+        Next
+
+
+        For i = 0 To lblCld.Count - 1
+
         Next
 
 
@@ -244,5 +308,6 @@
         End If
 
     End Function
+
 
 End Class
