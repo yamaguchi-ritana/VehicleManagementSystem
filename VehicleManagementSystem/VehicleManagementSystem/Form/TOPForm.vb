@@ -77,14 +77,16 @@
 
         Dim diy As DateTime = dtBirth.AddMonths(0).AddDays(-1).ToString()
         Dim diyy As DateTime = dtBirth.AddMonths(1).AddDays(0).ToString()
-
+        Dim diyyy As DateTime = dtBirth.AddMonths(1).AddDays(-1).ToString()
 
         Console.WriteLine(diy.ToString("dd"))
 
         Console.WriteLine(diyy.ToString("dd"))
 
+        Console.WriteLine(dtBirth.ToString("dd"))
+
         For i = 0 To lblCld.Count - 1
-            If day = CInt(diy.ToString("dd")) Then
+            If day = CInt(diyyy.ToString("dd")) Then
                 Exit For
             End If
             If index <= i Then
@@ -220,28 +222,27 @@
             End If
         Next
 
-        Dim aaaa As Integer = 0
+        Dim aaaa As Integer = CInt(diyyy.ToString("dd"))
         Dim bbbb As Integer = 0
 
         For i = 0 To 5
-            aaaa += 1
 
-            If String.IsNullOrWhiteSpace(Me.lblCldZero.Text) Then
-                Me.lblCldZero.Text = CStr(aaaa)
-            ElseIf String.IsNullOrWhiteSpace(Me.lblCldOne.Text) Then
-                Me.lblCldOne.Text = CStr(aaaa)
-            ElseIf String.IsNullOrWhiteSpace(Me.lblCldTwo.Text) Then
-                Me.lblCldTwo.Text = CStr(aaaa)
-            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThree.Text) Then
-                Me.lblCldThree.Text = CStr(aaaa)
-            ElseIf String.IsNullOrWhiteSpace(Me.lblCldFour.Text) Then
-                Me.lblCldFour.Text = CStr(aaaa)
-            ElseIf String.IsNullOrWhiteSpace(Me.lblCldFive.Text) Then
-                Me.lblCldFive.Text = CStr(aaaa)
-            ElseIf String.IsNullOrWhiteSpace(Me.lblCldSix.Text) Then
-                Me.lblCldSix.Text = CStr(aaaa)
+
+
+            If String.IsNullOrWhiteSpace(Me.lblCldFive.Text) Then
+                    Me.lblCldFive.Text = CStr(aaaa)
+                ElseIf String.IsNullOrWhiteSpace(Me.lblCldFour.Text) Then
+                    Me.lblCldFour.Text = CStr(aaaa)
+                ElseIf String.IsNullOrWhiteSpace(Me.lblCldThree.Text) Then
+                    Me.lblCldThree.Text = CStr(aaaa)
+                ElseIf String.IsNullOrWhiteSpace(Me.lblCldTwo.Text) Then
+                    Me.lblCldTwo.Text = CStr(aaaa)
+                ElseIf String.IsNullOrWhiteSpace(Me.lblCldOne.Text) Then
+                    Me.lblCldOne.Text = CStr(aaaa)
+                ElseIf String.IsNullOrWhiteSpace(Me.lblCldZero.Text) Then
+                    Me.lblCldZero.Text = CStr(aaaa)
             End If
-
+            aaaa -= 1
         Next
 
         For i = 0 To 10
