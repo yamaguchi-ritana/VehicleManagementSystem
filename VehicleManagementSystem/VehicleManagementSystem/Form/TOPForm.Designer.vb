@@ -208,6 +208,9 @@ Partial Class TOPForm
         Me.lblCldForty = New System.Windows.Forms.Label()
         Me.lblCldFortyOne = New System.Windows.Forms.Label()
         Me.lblToday = New System.Windows.Forms.Label()
+        Me.TableLayoutPanel44 = New System.Windows.Forms.TableLayoutPanel()
+        Me.btnNextMo = New System.Windows.Forms.Button()
+        Me.btnLastMo = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel43.SuspendLayout()
         Me.TableLayoutPanel42.SuspendLayout()
@@ -251,6 +254,7 @@ Partial Class TOPForm
         Me.TableLayoutPanel4.SuspendLayout()
         Me.TableLayoutPanel3.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
+        Me.TableLayoutPanel44.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnSearch
@@ -443,7 +447,7 @@ Partial Class TOPForm
         Me.TableLayoutPanel1.Controls.Add(Me.lblCldThirtyNine, 4, 11)
         Me.TableLayoutPanel1.Controls.Add(Me.lblCldForty, 5, 11)
         Me.TableLayoutPanel1.Controls.Add(Me.lblCldFortyOne, 6, 11)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(28, 32)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(28, 35)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 13
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.263158!))
@@ -2480,11 +2484,47 @@ Partial Class TOPForm
         Me.lblToday.Size = New System.Drawing.Size(0, 15)
         Me.lblToday.TabIndex = 14
         '
+        'TableLayoutPanel44
+        '
+        Me.TableLayoutPanel44.ColumnCount = 3
+        Me.TableLayoutPanel44.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
+        Me.TableLayoutPanel44.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.0!))
+        Me.TableLayoutPanel44.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
+        Me.TableLayoutPanel44.Controls.Add(Me.btnNextMo, 2, 0)
+        Me.TableLayoutPanel44.Controls.Add(Me.btnLastMo, 0, 0)
+        Me.TableLayoutPanel44.Location = New System.Drawing.Point(326, 5)
+        Me.TableLayoutPanel44.Name = "TableLayoutPanel44"
+        Me.TableLayoutPanel44.RowCount = 1
+        Me.TableLayoutPanel44.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel44.Size = New System.Drawing.Size(200, 29)
+        Me.TableLayoutPanel44.TabIndex = 15
+        '
+        'btnNextMo
+        '
+        Me.btnNextMo.Location = New System.Drawing.Point(143, 2)
+        Me.btnNextMo.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnNextMo.Name = "btnNextMo"
+        Me.btnNextMo.Size = New System.Drawing.Size(54, 25)
+        Me.btnNextMo.TabIndex = 17
+        Me.btnNextMo.Text = "来月"
+        Me.btnNextMo.UseVisualStyleBackColor = True
+        '
+        'btnLastMo
+        '
+        Me.btnLastMo.Location = New System.Drawing.Point(3, 2)
+        Me.btnLastMo.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnLastMo.Name = "btnLastMo"
+        Me.btnLastMo.Size = New System.Drawing.Size(54, 25)
+        Me.btnLastMo.TabIndex = 16
+        Me.btnLastMo.Text = "先月"
+        Me.btnLastMo.UseVisualStyleBackColor = True
+        '
         'TOPForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1067, 562)
+        Me.Controls.Add(Me.TableLayoutPanel44)
         Me.Controls.Add(Me.lblToday)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.btnEnd)
@@ -2588,6 +2628,7 @@ Partial Class TOPForm
         Me.TableLayoutPanel3.PerformLayout()
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.TableLayoutPanel2.PerformLayout()
+        Me.TableLayoutPanel44.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2779,4 +2820,7 @@ Partial Class TOPForm
     Friend WithEvents lblPlnTwoBtm As Label
     Friend WithEvents lblPlnTwoTop As Label
     Friend WithEvents lblToday As Label
+    Friend WithEvents TableLayoutPanel44 As TableLayoutPanel
+    Friend WithEvents btnNextMo As Button
+    Friend WithEvents btnLastMo As Button
 End Class

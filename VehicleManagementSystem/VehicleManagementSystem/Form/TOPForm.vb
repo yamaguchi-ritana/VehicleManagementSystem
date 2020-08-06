@@ -1,27 +1,54 @@
 ﻿Public Class TOPForm
 
-    Private Sub TOPFormLoad(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private referDate As DateTime
+
+    Private Sub TOPFormLoad(sender As Object, e As EventArgs) Handles MyBase.Load, lblToday.DoubleClick
 
         Dim characterConst As New CharacterConst
 
-        Dim dNow As DateTime = System.DateTime.Now
+        Dim dtNow As DateTime = System.DateTime.Now
+
+        Me.referDate = dtNow
 
         Dim sb As New System.Text.StringBuilder()
 
-        sb.Append(dNow.ToString(characterConst.GetyyyyMMddToJp))
-
+        sb.Append(dtNow.ToString(characterConst.GetyyyyMMddToJp))
         sb.Append(characterConst.GetHalfSpace)
         sb.Append(characterConst.GetHalfParenthesesStr)
-        sb.Append(dNow.ToString(characterConst.GetdddToJp))
+        sb.Append(dtNow.ToString(characterConst.GetdddToJp))
         sb.Append(characterConst.GetHalfParenthesesEnd)
 
         Me.lblToday.Text = sb.ToString
 
-        ' ' ' 
+        Me.CldCreateProc(dtNow)
 
-        aaa(dNow)
+    End Sub
 
+    Private Sub BtnLastMoClick(sender As Object, e As EventArgs) Handles btnLastMo.Click
 
+        Me.CldClearProc()
+
+        Dim lastMo As DateTime = referDate
+
+        Dim changeMo As DateTime = lastMo.AddMonths(-1).AddDays(0).ToString()
+
+        Me.referDate = changeMo
+
+        Me.CldCreateProc(changeMo)
+
+    End Sub
+
+    Private Sub BtnNextMoClick(sender As Object, e As EventArgs) Handles btnNextMo.Click
+
+        Me.CldClearProc()
+
+        Dim nextMo As DateTime = referDate
+
+        Dim changeMo As DateTime = nextMo.AddMonths(+1).AddDays(0).ToString()
+
+        Me.referDate = changeMo
+
+        Me.CldCreateProc(changeMo)
 
     End Sub
 
@@ -58,251 +85,108 @@
         Application.Exit()
     End Sub
 
+    Private Sub CldClearProc()
+
+        Me.lblCldZero.Text = Nothing
+        Me.lblCldOne.Text = Nothing
+        Me.lblCldTwo.Text = Nothing
+        Me.lblCldThree.Text = Nothing
+        Me.lblCldFour.Text = Nothing
+        Me.lblCldFive.Text = Nothing
+        Me.lblCldSix.Text = Nothing
+        Me.lblCldSeven.Text = Nothing
+        Me.lblCldEight.Text = Nothing
+        Me.lblCldNine.Text = Nothing
+        Me.lblCldTen.Text = Nothing
+        Me.lblCldEleven.Text = Nothing
+        Me.lblCldTwelve.Text = Nothing
+        Me.lblCldThirteen.Text = Nothing
+        Me.lblCldFourteen.Text = Nothing
+        Me.lblCldFifteen.Text = Nothing
+        Me.lblCldSixteen.Text = Nothing
+        Me.lblCldSeventeen.Text = Nothing
+        Me.lblCldEighteen.Text = Nothing
+        Me.lblCldNineteen.Text = Nothing
+        Me.lblCldTwenty.Text = Nothing
+        Me.lblCldTwentyOne.Text = Nothing
+        Me.lblCldTwentyTwo.Text = Nothing
+        Me.lblCldTwentyThree.Text = Nothing
+        Me.lblCldTwentyFour.Text = Nothing
+        Me.lblCldTwentyFive.Text = Nothing
+        Me.lblCldTwentySix.Text = Nothing
+        Me.lblCldTwentySeven.Text = Nothing
+        Me.lblCldTwentyEight.Text = Nothing
+        Me.lblCldTwentyNine.Text = Nothing
+        Me.lblCldThirty.Text = Nothing
+        Me.lblCldThirtyOne.Text = Nothing
+        Me.lblCldThirtyTwo.Text = Nothing
+        Me.lblCldThirtyThree.Text = Nothing
+        Me.lblCldThirtyFour.Text = Nothing
+        Me.lblCldThirtyFive.Text = Nothing
+        Me.lblCldThirtySix.Text = Nothing
+        Me.lblCldThirtySeven.Text = Nothing
+        Me.lblCldThirtyEight.Text = Nothing
+        Me.lblCldThirtyNine.Text = Nothing
+        Me.lblCldForty.Text = Nothing
+        Me.lblCldFortyOne.Text = Nothing
+
+    End Sub
+
     ' フォームのClosingイベントハンドラ
     Private Sub FrmProgressClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
         ' アプリケーションの終了
         Application.Exit()
     End Sub
 
-    Private Function aaa(dNow As DateTime) As String
+    Private Sub CldCreateProc(dtNow As DateTime)
 
-        Dim dtBirth As DateTime = DateTime.Parse(dNow.ToString("yyyy/MM") + "/01")
-        Dim a As String = dtBirth.ToString("ddd")
-        Dim index As Integer
-        index = bbb(a)
+        Dim charConst As New CharacterConst
+
+        Dim strDt As DateTime = DateTime.Parse(dtNow.ToString(charConst.GetYrSlashMo) + charConst.GetSlashZeroOne)
+
+        Dim strWeek As String = strDt.ToString(charConst.GetdddToJp)
+
+        Dim strPosition As Integer
+
+        Me.SetCld(strPosition, strWeek, charConst, strDt)
+
+    End Sub
+
+    Private Sub SetCld(strPosition As Integer, strWeek As String, charConst As CharacterConst, strDt As DateTime)
+
+        strPosition = Me.GetbeginDay(strWeek, charConst)
 
         Dim lblCld() As String = {"lblCldZero", "lblCldOne", "lblCldTwo", "lblCldThree", "lblCldFour", "lblCldFive", "lblCldSix", "lblCldSeven", "lblCldEight", "lblCldNine", "lblCldTen", "lblCldEleven", "lblCldTwelve", "lblCldThirteen", "lblCldFourteen", "lblCldFifteen", "lblCldSixteen", "lblCldSeventeen", "lblCldEighteen", "lblCldNineteen", "lblCldTwenty", "lblCldTwentyOne", "lblCldTwentyTwo", "lblCldTwentyThree", "lblCldTwentyFour", "lblCldTwentyFive", "lblCldTwentySix", "lblCldTwentySeven", "lblCldTwentyEight", "lblCldTwentyNine", "lblCldThirty", "lblCldThirtyOne", "lblCldThirtyTwo", "lblCldThirtyThree", "lblCldThirtyFour", "lblCldThirtyFive", "lblCldThirtySix", "lblCldThirtySeven", "lblCldThirtyEight", "lblCldThirtyNine", "lblCldForty", "lblCldFortyOne"}
 
         Dim day As Integer
 
-        Dim diy As DateTime = dtBirth.AddMonths(0).AddDays(-1).ToString()
-        Dim diyy As DateTime = dtBirth.AddMonths(1).AddDays(0).ToString()
-        Dim diyyy As DateTime = dtBirth.AddMonths(1).AddDays(-1).ToString()
+        Dim endDt As DateTime = strDt.AddMonths(1).AddDays(-1).ToString()
 
-        Console.WriteLine(diy.ToString("dd"))
+        Me.SetThisMo(lblCld, day, endDt, charConst, strPosition)
 
-        Console.WriteLine(diyy.ToString("dd"))
+        Dim lastMo As Integer = CInt(endDt.ToString(charConst.Getdd))
 
-        Console.WriteLine(dtBirth.ToString("dd"))
+        Me.SetLastMo(lastMo)
 
-        For i = 0 To lblCld.Count - 1
-            If day = CInt(diyyy.ToString("dd")) Then
-                Exit For
-            End If
-            If index <= i Then
+        Dim nextMo As Integer
 
-                If Me.lblCldZero.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldZero.Text = day
-                ElseIf Me.lblCldOne.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldOne.Text = day
-                ElseIf Me.lblCldTwo.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldTwo.Text = day
-                ElseIf Me.lblCldThree.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldThree.Text = day
-                ElseIf Me.lblCldFour.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldFour.Text = day
-                ElseIf Me.lblCldFive.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldFive.Text = day
-                ElseIf Me.lblCldSix.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldSix.Text = day
-                ElseIf Me.lblCldSeven.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldSeven.Text = day
-                ElseIf Me.lblCldEight.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldEight.Text = day
-                ElseIf Me.lblCldNine.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldNine.Text = day
-                ElseIf Me.lblCldTen.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldTen.Text = day
-                ElseIf Me.lblCldEleven.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldEleven.Text = day
-                ElseIf Me.lblCldTwelve.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldTwelve.Text = day
-                ElseIf Me.lblCldThirteen.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldThirteen.Text = day
-                ElseIf Me.lblCldFourteen.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldFourteen.Text = day
-                ElseIf Me.lblCldFifteen.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldFifteen.Text = day
-                ElseIf Me.lblCldSixteen.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldSixteen.Text = day
-                ElseIf Me.lblCldSeventeen.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldSeventeen.Text = day
-                ElseIf Me.lblCldEighteen.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldEighteen.Text = day
-                ElseIf Me.lblCldNineteen.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldNineteen.Text = day
-                ElseIf Me.lblCldTwenty.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldTwenty.Text = day
-                ElseIf Me.lblCldTwentyOne.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldTwentyOne.Text = day
-                ElseIf Me.lblCldTwentyTwo.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldTwentyTwo.Text = day
-                ElseIf Me.lblCldTwentyThree.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldTwentyThree.Text = day
-                ElseIf Me.lblCldTwentyFour.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldTwentyFour.Text = day
-                ElseIf Me.lblCldTwentyFive.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldTwentyFive.Text = day
-                ElseIf Me.lblCldTwentySix.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldTwentySix.Text = day
-                ElseIf Me.lblCldTwentySeven.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldTwentySeven.Text = day
-                ElseIf Me.lblCldTwentyEight.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldTwentyEight.Text = day
-                ElseIf Me.lblCldTwentyNine.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldTwentyNine.Text = day
-                ElseIf Me.lblCldThirty.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldThirty.Text = day
-                ElseIf Me.lblCldThirtyOne.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldThirtyOne.Text = day
-                ElseIf Me.lblCldThirtyTwo.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldThirtyTwo.Text = day
-                ElseIf Me.lblCldThirtyThree.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldThirtyThree.Text = day
-                ElseIf Me.lblCldThirtyFour.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldThirtyFour.Text = day
-                ElseIf Me.lblCldThirtyFive.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldThirtyFive.Text = day
-                ElseIf Me.lblCldThirtySix.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldThirtySix.Text = day
-                ElseIf Me.lblCldThirtySeven.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldThirtySeven.Text = day
-                ElseIf Me.lblCldThirtyEight.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldThirtyEight.Text = day
-                ElseIf Me.lblCldThirtyNine.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldThirtyNine.Text = day
-                ElseIf Me.lblCldForty.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldForty.Text = day
-                ElseIf Me.lblCldFortyOne.Name = lblCld(i).ToString Then
-                    day += 1
-                    Me.lblCldFortyOne.Text = day
-                End If
+        Me.SetNextMo(nextMo)
 
-            End If
-        Next
+    End Sub
 
-        Dim aaaa As Integer = CInt(diyyy.ToString("dd"))
-        Dim bbbb As Integer = 0
+    Private Function GetbeginDay(strWeek As String, charConst As CharacterConst) As Integer
 
-        For i = 0 To 5
-
-
-
-            If String.IsNullOrWhiteSpace(Me.lblCldFive.Text) Then
-                    Me.lblCldFive.Text = CStr(aaaa)
-                ElseIf String.IsNullOrWhiteSpace(Me.lblCldFour.Text) Then
-                    Me.lblCldFour.Text = CStr(aaaa)
-                ElseIf String.IsNullOrWhiteSpace(Me.lblCldThree.Text) Then
-                    Me.lblCldThree.Text = CStr(aaaa)
-                ElseIf String.IsNullOrWhiteSpace(Me.lblCldTwo.Text) Then
-                    Me.lblCldTwo.Text = CStr(aaaa)
-                ElseIf String.IsNullOrWhiteSpace(Me.lblCldOne.Text) Then
-                    Me.lblCldOne.Text = CStr(aaaa)
-                ElseIf String.IsNullOrWhiteSpace(Me.lblCldZero.Text) Then
-                    Me.lblCldZero.Text = CStr(aaaa)
-            End If
-            aaaa -= 1
-        Next
-
-        For i = 0 To 10
-            bbbb += 1
-
-            If String.IsNullOrWhiteSpace(Me.lblCldTwentyEight.Text) Then
-                Me.lblCldTwentyEight.Text = Single.Parse(bbbb)
-            ElseIf String.IsNullOrWhiteSpace(Me.lblCldTwentyNine.Text) Then
-                Me.lblCldTwentyNine.Text = Single.Parse(bbbb)
-            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirty.Text) Then
-                Me.lblCldThirty.Text = Single.Parse(bbbb)
-            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtyOne.Text) Then
-                Me.lblCldThirtyOne.Text = Single.Parse(bbbb)
-            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtyTwo.Text) Then
-                Me.lblCldThirtyTwo.Text = Single.Parse(bbbb)
-            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtyThree.Text) Then
-                Me.lblCldThirtyThree.Text = Single.Parse(bbbb)
-            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtyFour.Text) Then
-                Me.lblCldThirtyFour.Text = Single.Parse(bbbb)
-            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtyFive.Text) Then
-                Me.lblCldThirtyFive.Text = Single.Parse(bbbb)
-            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtySix.Text) Then
-                Me.lblCldThirtySix.Text = Single.Parse(bbbb)
-            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtySeven.Text) Then
-                Me.lblCldThirtySeven.Text = Single.Parse(bbbb)
-            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtyEight.Text) Then
-                Me.lblCldThirtyEight.Text = Single.Parse(bbbb)
-            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtyNine.Text) Then
-                Me.lblCldThirtyNine.Text = Single.Parse(bbbb)
-            ElseIf String.IsNullOrWhiteSpace(Me.lblCldForty.Text) Then
-                Me.lblCldForty.Text = Single.Parse(bbbb)
-            ElseIf String.IsNullOrWhiteSpace(Me.lblCldFortyOne.Text) Then
-                Me.lblCldFortyOne.Text = Single.Parse(bbbb)
-            End If
-
-        Next
-
-
-        For i = 0 To lblCld.Count - 1
-
-        Next
-
-
-    End Function
-
-    Private Function bbb(a As String) As Integer
-
-
-
-        If (a = "日") Then
+        If (strWeek = charConst.GetSunday) Then
             Return 0
-        ElseIf (a = "月") Then
+        ElseIf (strWeek = charConst.GetMonday) Then
             Return 1
-        ElseIf (a = "火") Then
+        ElseIf (strWeek = charConst.GetTuesday) Then
             Return 2
-        ElseIf (a = "水") Then
+        ElseIf (strWeek = charConst.GetWednesday) Then
             Return 3
-        ElseIf (a = "木") Then
+        ElseIf (strWeek = charConst.GetThursday) Then
             Return 4
-        ElseIf (a = "金") Then
+        ElseIf (strWeek = charConst.GetFriday) Then
             Return 5
         Else
             Return 6
@@ -310,5 +194,159 @@
 
     End Function
 
+    Private Sub SetThisMo(lblCld() As String, day As Integer, endDt As DateTime, charConst As CharacterConst, strPosition As Integer)
+
+        For index = 0 To lblCld.Count - 1
+            If day = CInt(endDt.ToString(charConst.Getdd)) Then
+                Exit For
+            End If
+            If strPosition <= index Then
+
+                day += 1
+
+                If Me.lblCldZero.Name = lblCld(index).ToString Then
+                    Me.lblCldZero.Text = day
+                ElseIf Me.lblCldOne.Name = lblCld(index).ToString Then
+                    Me.lblCldOne.Text = day
+                ElseIf Me.lblCldTwo.Name = lblCld(index).ToString Then
+                    Me.lblCldTwo.Text = day
+                ElseIf Me.lblCldThree.Name = lblCld(index).ToString Then
+                    Me.lblCldThree.Text = day
+                ElseIf Me.lblCldFour.Name = lblCld(index).ToString Then
+                    Me.lblCldFour.Text = day
+                ElseIf Me.lblCldFive.Name = lblCld(index).ToString Then
+                    Me.lblCldFive.Text = day
+                ElseIf Me.lblCldSix.Name = lblCld(index).ToString Then
+                    Me.lblCldSix.Text = day
+                ElseIf Me.lblCldSeven.Name = lblCld(index).ToString Then
+                    Me.lblCldSeven.Text = day
+                ElseIf Me.lblCldEight.Name = lblCld(index).ToString Then
+                    Me.lblCldEight.Text = day
+                ElseIf Me.lblCldNine.Name = lblCld(index).ToString Then
+                    Me.lblCldNine.Text = day
+                ElseIf Me.lblCldTen.Name = lblCld(index).ToString Then
+                    Me.lblCldTen.Text = day
+                ElseIf Me.lblCldEleven.Name = lblCld(index).ToString Then
+                    Me.lblCldEleven.Text = day
+                ElseIf Me.lblCldTwelve.Name = lblCld(index).ToString Then
+                    Me.lblCldTwelve.Text = day
+                ElseIf Me.lblCldThirteen.Name = lblCld(index).ToString Then
+                    Me.lblCldThirteen.Text = day
+                ElseIf Me.lblCldFourteen.Name = lblCld(index).ToString Then
+                    Me.lblCldFourteen.Text = day
+                ElseIf Me.lblCldFifteen.Name = lblCld(index).ToString Then
+                    Me.lblCldFifteen.Text = day
+                ElseIf Me.lblCldSixteen.Name = lblCld(index).ToString Then
+                    Me.lblCldSixteen.Text = day
+                ElseIf Me.lblCldSeventeen.Name = lblCld(index).ToString Then
+                    Me.lblCldSeventeen.Text = day
+                ElseIf Me.lblCldEighteen.Name = lblCld(index).ToString Then
+                    Me.lblCldEighteen.Text = day
+                ElseIf Me.lblCldNineteen.Name = lblCld(index).ToString Then
+                    Me.lblCldNineteen.Text = day
+                ElseIf Me.lblCldTwenty.Name = lblCld(index).ToString Then
+                    Me.lblCldTwenty.Text = day
+                ElseIf Me.lblCldTwentyOne.Name = lblCld(index).ToString Then
+                    Me.lblCldTwentyOne.Text = day
+                ElseIf Me.lblCldTwentyTwo.Name = lblCld(index).ToString Then
+                    Me.lblCldTwentyTwo.Text = day
+                ElseIf Me.lblCldTwentyThree.Name = lblCld(index).ToString Then
+                    Me.lblCldTwentyThree.Text = day
+                ElseIf Me.lblCldTwentyFour.Name = lblCld(index).ToString Then
+                    Me.lblCldTwentyFour.Text = day
+                ElseIf Me.lblCldTwentyFive.Name = lblCld(index).ToString Then
+                    Me.lblCldTwentyFive.Text = day
+                ElseIf Me.lblCldTwentySix.Name = lblCld(index).ToString Then
+                    Me.lblCldTwentySix.Text = day
+                ElseIf Me.lblCldTwentySeven.Name = lblCld(index).ToString Then
+                    Me.lblCldTwentySeven.Text = day
+                ElseIf Me.lblCldTwentyEight.Name = lblCld(index).ToString Then
+                    Me.lblCldTwentyEight.Text = day
+                ElseIf Me.lblCldTwentyNine.Name = lblCld(index).ToString Then
+                    Me.lblCldTwentyNine.Text = day
+                ElseIf Me.lblCldThirty.Name = lblCld(index).ToString Then
+                    Me.lblCldThirty.Text = day
+                ElseIf Me.lblCldThirtyOne.Name = lblCld(index).ToString Then
+                    Me.lblCldThirtyOne.Text = day
+                ElseIf Me.lblCldThirtyTwo.Name = lblCld(index).ToString Then
+                    Me.lblCldThirtyTwo.Text = day
+                ElseIf Me.lblCldThirtyThree.Name = lblCld(index).ToString Then
+                    Me.lblCldThirtyThree.Text = day
+                ElseIf Me.lblCldThirtyFour.Name = lblCld(index).ToString Then
+                    Me.lblCldThirtyFour.Text = day
+                ElseIf Me.lblCldThirtyFive.Name = lblCld(index).ToString Then
+                    Me.lblCldThirtyFive.Text = day
+                ElseIf Me.lblCldThirtySix.Name = lblCld(index).ToString Then
+                    Me.lblCldThirtySix.Text = day
+                End If
+
+            End If
+        Next
+
+    End Sub
+
+    Private Sub SetLastMo(lastMo As Integer)
+
+        For lastMoCnt = 0 To 5
+
+            If String.IsNullOrWhiteSpace(Me.lblCldFive.Text) Then
+                Me.lblCldFive.Text = CStr(lastMo)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldFour.Text) Then
+                Me.lblCldFour.Text = CStr(lastMo)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThree.Text) Then
+                Me.lblCldThree.Text = CStr(lastMo)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldTwo.Text) Then
+                Me.lblCldTwo.Text = CStr(lastMo)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldOne.Text) Then
+                Me.lblCldOne.Text = CStr(lastMo)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldZero.Text) Then
+                Me.lblCldZero.Text = CStr(lastMo)
+            End If
+
+            lastMo -= 1
+
+        Next
+
+    End Sub
+
+    Private Sub SetNextMo(nextMo As Integer)
+
+        For nextMoCnt = 0 To 10
+
+            nextMo += 1
+
+            If String.IsNullOrWhiteSpace(Me.lblCldTwentyEight.Text) Then
+                Me.lblCldTwentyEight.Text = Single.Parse(nextMo)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldTwentyNine.Text) Then
+                Me.lblCldTwentyNine.Text = Single.Parse(nextMo)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirty.Text) Then
+                Me.lblCldThirty.Text = Single.Parse(nextMo)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtyOne.Text) Then
+                Me.lblCldThirtyOne.Text = Single.Parse(nextMo)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtyTwo.Text) Then
+                Me.lblCldThirtyTwo.Text = Single.Parse(nextMo)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtyThree.Text) Then
+                Me.lblCldThirtyThree.Text = Single.Parse(nextMo)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtyFour.Text) Then
+                Me.lblCldThirtyFour.Text = Single.Parse(nextMo)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtyFive.Text) Then
+                Me.lblCldThirtyFive.Text = Single.Parse(nextMo)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtySix.Text) Then
+                Me.lblCldThirtySix.Text = Single.Parse(nextMo)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtySeven.Text) Then
+                Me.lblCldThirtySeven.Text = Single.Parse(nextMo)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtyEight.Text) Then
+                Me.lblCldThirtyEight.Text = Single.Parse(nextMo)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldThirtyNine.Text) Then
+                Me.lblCldThirtyNine.Text = Single.Parse(nextMo)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldForty.Text) Then
+                Me.lblCldForty.Text = Single.Parse(nextMo)
+            ElseIf String.IsNullOrWhiteSpace(Me.lblCldFortyOne.Text) Then
+                Me.lblCldFortyOne.Text = Single.Parse(nextMo)
+            End If
+
+        Next
+
+    End Sub
 
 End Class
