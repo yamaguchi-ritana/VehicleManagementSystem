@@ -81,6 +81,12 @@
     <Compile Include="Const\MessageConst.vb" />
     <Compile Include="Dto\SelectedVehicleDto.vb" />
     <Compile Include="Dto\VehicleInfoSearchDto.vb" />
+    <Compile Include="Form\AccountForm.Designer.vb">
+      <DependentUpon>AccountForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\AccountForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\BackupForm.Designer.vb">
       <DependentUpon>BackupForm.vb</DependentUpon>
     </Compile>
@@ -98,6 +104,12 @@
       <DependentUpon>SearchForm.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\SearchForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\SystemManagementForm.Designer.vb">
+      <DependentUpon>SystemManagementForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\SystemManagementForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\TOPForm.Designer.vb">
@@ -133,6 +145,9 @@
     <Compile Include="Sql\VehicleSearchSql.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Form\AccountForm.resx">
+      <DependentUpon>AccountForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\BackupForm.resx">
       <DependentUpon>BackupForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -141,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\SearchForm.resx">
       <DependentUpon>SearchForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\SystemManagementForm.resx">
+      <DependentUpon>SystemManagementForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\TOPForm.resx">
       <DependentUpon>TOPForm.vb</DependentUpon>

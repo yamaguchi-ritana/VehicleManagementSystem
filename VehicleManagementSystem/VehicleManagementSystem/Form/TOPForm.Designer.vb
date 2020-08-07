@@ -26,7 +26,7 @@ Partial Class TOPForm
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
+        Me.btnSysMgt = New System.Windows.Forms.Button()
         Me.lblVer = New System.Windows.Forms.Label()
         Me.lblCopywriter = New System.Windows.Forms.Label()
         Me.btnBackup = New System.Windows.Forms.Button()
@@ -297,15 +297,15 @@ Partial Class TOPForm
         Me.Button4.Text = "通知一覧(&N)"
         Me.Button4.UseVisualStyleBackColor = True
         '
-        'Button5
+        'btnSysMgt
         '
-        Me.Button5.Location = New System.Drawing.Point(758, 158)
-        Me.Button5.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(129, 31)
-        Me.Button5.TabIndex = 4
-        Me.Button5.Text = "システム管理(&M)"
-        Me.Button5.UseVisualStyleBackColor = True
+        Me.btnSysMgt.Location = New System.Drawing.Point(758, 158)
+        Me.btnSysMgt.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnSysMgt.Name = "btnSysMgt"
+        Me.btnSysMgt.Size = New System.Drawing.Size(129, 31)
+        Me.btnSysMgt.TabIndex = 4
+        Me.btnSysMgt.Text = "システム管理(&M)"
+        Me.btnSysMgt.UseVisualStyleBackColor = True
         '
         'lblVer
         '
@@ -2531,7 +2531,7 @@ Partial Class TOPForm
         Me.Controls.Add(Me.btnBackup)
         Me.Controls.Add(Me.lblVer)
         Me.Controls.Add(Me.lblCopywriter)
-        Me.Controls.Add(Me.Button5)
+        Me.Controls.Add(Me.btnSysMgt)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
@@ -2638,7 +2638,7 @@ Partial Class TOPForm
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
-    Friend WithEvents Button5 As Button
+    Friend WithEvents btnSysMgt As Button
     Friend WithEvents lblVer As Label
     Friend WithEvents lblCopywriter As Label
     Friend WithEvents btnBackup As Button

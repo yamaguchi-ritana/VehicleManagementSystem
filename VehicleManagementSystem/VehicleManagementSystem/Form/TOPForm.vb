@@ -65,6 +65,16 @@
         searchForm.Dispose()
     End Sub
 
+    Private Sub btnSysMgtClick(sender As Object, e As EventArgs) Handles btnSysMgt.Click
+
+        Dim systemManagementForm As New SystemManagementForm()
+
+        systemManagementForm.ShowDialog(Me)
+
+        systemManagementForm.Dispose()
+
+    End Sub
+
     Private Sub BtnBackupClick(sender As Object, e As EventArgs) Handles btnBackup.Click
 
         ' BackupFormのインスタンスを作成する
@@ -93,28 +103,7 @@
         Me.lblCldThree.Text = Nothing
         Me.lblCldFour.Text = Nothing
         Me.lblCldFive.Text = Nothing
-        Me.lblCldSix.Text = Nothing
-        Me.lblCldSeven.Text = Nothing
-        Me.lblCldEight.Text = Nothing
-        Me.lblCldNine.Text = Nothing
-        Me.lblCldTen.Text = Nothing
-        Me.lblCldEleven.Text = Nothing
-        Me.lblCldTwelve.Text = Nothing
-        Me.lblCldThirteen.Text = Nothing
-        Me.lblCldFourteen.Text = Nothing
-        Me.lblCldFifteen.Text = Nothing
-        Me.lblCldSixteen.Text = Nothing
-        Me.lblCldSeventeen.Text = Nothing
-        Me.lblCldEighteen.Text = Nothing
-        Me.lblCldNineteen.Text = Nothing
-        Me.lblCldTwenty.Text = Nothing
-        Me.lblCldTwentyOne.Text = Nothing
-        Me.lblCldTwentyTwo.Text = Nothing
-        Me.lblCldTwentyThree.Text = Nothing
-        Me.lblCldTwentyFour.Text = Nothing
-        Me.lblCldTwentyFive.Text = Nothing
-        Me.lblCldTwentySix.Text = Nothing
-        Me.lblCldTwentySeven.Text = Nothing
+
         Me.lblCldTwentyEight.Text = Nothing
         Me.lblCldTwentyNine.Text = Nothing
         Me.lblCldThirty.Text = Nothing
