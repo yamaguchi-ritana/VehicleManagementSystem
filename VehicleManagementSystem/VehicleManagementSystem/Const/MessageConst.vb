@@ -34,6 +34,10 @@
 
     Private Const backupDestination As String = "バックアップ先を指定してください。"
 
+    Private Const idIsIncorrect As String = "既にIDが存在します。"
+
+    Private Const idChkErr As String = "IDチェックエラー"
+
     Public ReadOnly Property GetEnterId() As String
         Get
             Return enterId
@@ -133,6 +137,18 @@
     Public ReadOnly Property GetCbackupDestination() As String
         Get
             Return backupDestination
+        End Get
+    End Property
+
+    Public ReadOnly Property GetIdIsIncorrect() As String
+        Get
+            Return idIsIncorrect
+        End Get
+    End Property
+
+    Public ReadOnly Property GetIdChkErr() As String
+        Get
+            Return idChkErr
         End Get
     End Property
 

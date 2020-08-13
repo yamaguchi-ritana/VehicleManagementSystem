@@ -1,5 +1,5 @@
 ﻿Public Class SystemManagementForm
-    Private Sub btnAccountClick(sender As Object, e As EventArgs) Handles btnAccount.Click
+    Private Sub BtnAccountClick(sender As Object, e As EventArgs) Handles btnAccount.Click
 
         Dim accountForm As New AccountForm()
 
