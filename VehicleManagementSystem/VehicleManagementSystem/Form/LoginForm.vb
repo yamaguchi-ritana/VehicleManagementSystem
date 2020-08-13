@@ -1,4 +1,12 @@
-﻿Public Class FrmLogin
+﻿Public Class LoginForm
+
+    Dim id As String
+
+    Public ReadOnly Property Getid() As String
+        Get
+            Return id
+        End Get
+    End Property
 
     Private Sub lblId_Click(sender As Object, e As EventArgs) Handles lblId.Click
         Me.txtId.Focus()
@@ -74,6 +82,10 @@
                 MessageBox.Show(errMsgConst.GetIdOrPwIsIncorrect, errMsgConst.GetAccountChkErr, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return
             End If
+
+            While sr.Read
+                Me.id = sr("id")
+            End While
 
         Finally
             ' コネクションの破棄

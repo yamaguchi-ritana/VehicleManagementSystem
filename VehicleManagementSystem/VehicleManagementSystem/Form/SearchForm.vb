@@ -5,7 +5,7 @@
     Dim vehiclePk As Integer
 
     ' VehicleInformationFormに車両PKを受け渡すための設定処理
-    Public ReadOnly Property GsVehiclePk() As Integer
+    Public ReadOnly Property GetVehiclePk() As Integer
         Get
             Return vehiclePk
         End Get

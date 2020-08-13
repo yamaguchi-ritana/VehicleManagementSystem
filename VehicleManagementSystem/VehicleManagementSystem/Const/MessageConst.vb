@@ -38,6 +38,10 @@
 
     Private Const idChkErr As String = "IDチェックエラー"
 
+    Private Const addedAccount As String = "アカウントを追加しました。"
+
+    Private Const addAccount As String = "アカウントの追加"
+
     Public ReadOnly Property GetEnterId() As String
         Get
             Return enterId
@@ -149,6 +153,18 @@
     Public ReadOnly Property GetIdChkErr() As String
         Get
             Return idChkErr
+        End Get
+    End Property
+
+    Public ReadOnly Property GetAddedAccount() As String
+        Get
+            Return addedAccount
+        End Get
+    End Property
+
+    Public ReadOnly Property GetAddAccount() As String
+        Get
+            Return addAccount
         End Get
     End Property
 

@@ -1,6 +1,6 @@
 ﻿Public Class AccountInsertSql
 
-    Function AccountInsert(id As String, password As String) As String
+    Function AccountInsert(id As String, password As String, userId As String) As String
 
         Dim sql As New System.Text.StringBuilder()
 
@@ -8,9 +8,9 @@
         sql.Append("VALUES(")
         sql.Append("'" + id + "', ")
         sql.Append("'" + password + "', ")
-        sql.Append("'user1', ")
+        sql.Append("'" + userId + "', ")
         sql.Append("GETDATE(), ")
-        sql.Append("'user1', ")
+        sql.Append("'" + userId + "', ")
         sql.Append("GETDATE()")
         sql.Append(");")
 

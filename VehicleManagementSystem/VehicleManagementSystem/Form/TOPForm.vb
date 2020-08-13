@@ -1,8 +1,20 @@
 ﻿Public Class TOPForm
 
+    Dim id As String
+
+    Public ReadOnly Property Getid() As String
+        Get
+            Return id
+        End Get
+    End Property
+
     Private referDate As DateTime
 
     Private Sub TOPFormLoad(sender As Object, e As EventArgs) Handles MyBase.Load, lblToday.DoubleClick
+
+        Dim frm As LoginForm = CType(Me.Owner, LoginForm)
+
+        Me.id = frm.Getid
 
         Dim characterConst As New CharacterConst
 

@@ -5,7 +5,7 @@
 
         Dim vehicleInfoSql As New VehicleInfoSql
 
-        Dim sql As String = vehicleInfoSql.VehicleInfo(frm.GsVehiclePk())
+        Dim sql As String = vehicleInfoSql.VehicleInfo(frm.GetVehiclePk())
 
         'ラベル用フラグ
         'Dim F As Integer

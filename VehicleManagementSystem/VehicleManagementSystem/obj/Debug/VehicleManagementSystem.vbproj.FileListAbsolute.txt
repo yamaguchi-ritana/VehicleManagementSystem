@@ -83,7 +83,6 @@ C:\GitHub\VehicleManagementSystem\VehicleManagementSystem\bin\Debug\VehicleManag
 C:\GitHub\VehicleManagementSystem\VehicleManagementSystem\bin\Debug\VehicleManagementSystem.xml
 C:\GitHub\VehicleManagementSystem\VehicleManagementSystem\obj\Debug\VehicleManagementSystem.AccountForm.resources
 C:\GitHub\VehicleManagementSystem\VehicleManagementSystem\obj\Debug\VehicleManagementSystem.BackupForm.resources
-C:\GitHub\VehicleManagementSystem\VehicleManagementSystem\obj\Debug\VehicleManagementSystem.FrmLogin.resources
 C:\GitHub\VehicleManagementSystem\VehicleManagementSystem\obj\Debug\VehicleManagementSystem.SearchForm.resources
 C:\GitHub\VehicleManagementSystem\VehicleManagementSystem\obj\Debug\VehicleManagementSystem.SystemManagementForm.resources
 C:\GitHub\VehicleManagementSystem\VehicleManagementSystem\obj\Debug\VehicleManagementSystem.TOPForm.resources
@@ -95,3 +94,4 @@ C:\GitHub\VehicleManagementSystem\VehicleManagementSystem\obj\Debug\VehicleManag
 C:\GitHub\VehicleManagementSystem\VehicleManagementSystem\obj\Debug\VehicleManagementSystem.xml
 C:\GitHub\VehicleManagementSystem\VehicleManagementSystem\obj\Debug\VehicleManagementSystem.pdb
 C:\GitHub\VehicleManagementSystem\VehicleManagementSystem\obj\Debug\VehicleManagementSystem.vbprojAssemblyReference.cache
+C:\GitHub\VehicleManagementSystem\VehicleManagementSystem\obj\Debug\VehicleManagementSystem.LoginForm.resources
