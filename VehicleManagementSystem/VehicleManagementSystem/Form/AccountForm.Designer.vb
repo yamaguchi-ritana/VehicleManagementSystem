@@ -22,7 +22,7 @@ Partial Class AccountForm
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.gridSearchResults = New System.Windows.Forms.DataGridView()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.lblId = New System.Windows.Forms.Label()
@@ -33,19 +33,19 @@ Partial Class AccountForm
         Me.btnInsert = New System.Windows.Forms.Button()
         Me.btnUpdate = New System.Windows.Forms.Button()
         Me.btnReturn = New System.Windows.Forms.Button()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gridSearchResults, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'DataGridView1
+        'gridSearchResults
         '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2})
-        Me.DataGridView1.Location = New System.Drawing.Point(29, 31)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.RowHeadersWidth = 51
-        Me.DataGridView1.RowTemplate.Height = 24
-        Me.DataGridView1.Size = New System.Drawing.Size(417, 503)
-        Me.DataGridView1.TabIndex = 0
+        Me.gridSearchResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.gridSearchResults.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2})
+        Me.gridSearchResults.Location = New System.Drawing.Point(29, 31)
+        Me.gridSearchResults.Name = "gridSearchResults"
+        Me.gridSearchResults.RowHeadersWidth = 51
+        Me.gridSearchResults.RowTemplate.Height = 24
+        Me.gridSearchResults.Size = New System.Drawing.Size(417, 503)
+        Me.gridSearchResults.TabIndex = 0
         '
         'Column1
         '
@@ -92,7 +92,6 @@ Partial Class AccountForm
         Me.txtPassword.Location = New System.Drawing.Point(691, 57)
         Me.txtPassword.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txtPassword.Name = "txtPassword"
-        Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(9679)
         Me.txtPassword.Size = New System.Drawing.Size(190, 22)
         Me.txtPassword.TabIndex = 6
         '
@@ -149,19 +148,19 @@ Partial Class AccountForm
         Me.Controls.Add(Me.txtId)
         Me.Controls.Add(Me.lblPassword)
         Me.Controls.Add(Me.lblId)
-        Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.gridSearchResults)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
         Me.Name = "AccountForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "アカウント"
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gridSearchResults, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents gridSearchResults As DataGridView
     Friend WithEvents lblId As Label
     Friend WithEvents lblPassword As Label
     Friend WithEvents txtId As TextBox

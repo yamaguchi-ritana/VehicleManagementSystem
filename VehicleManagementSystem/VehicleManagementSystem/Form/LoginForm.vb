@@ -47,7 +47,7 @@
 
         Dim accountSearchSql As New AccountSearchSql
 
-        Dim sql As String = accountSearchSql.AccountSearch(Me.txtId.Text, Me.txtPassword.Text)
+        Dim sql As String = accountSearchSql.LoginAccountPwSearch(Me.txtId.Text, Me.txtPassword.Text)
 
         ' DB接続情報を取得
         Dim dbConnInfo As New DBConnInfoCommon

@@ -31,7 +31,7 @@
         Me.txtDesignatedNumber.Focus()
     End Sub
 
-    Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+    Private Sub BtnSearchClick(sender As Object, e As EventArgs) Handles btnSearch.Click
 
         Dim vehicleInfoSearchDto As New VehicleInfoSearchDto With {
             .GsSurname = Me.txtSurname.Text,
@@ -41,9 +41,9 @@
             .GsDesignatedNumber = Me.txtDesignatedNumber.Text
         }
 
-        Dim searchFormSql As New VehicleSearchSql
+        Dim vehicleSearch As New VehicleSearchSql
 
-        Dim sql As String = searchFormSql.VehicleInfoSearch(vehicleInfoSearchDto)
+        Dim sql As String = vehicleSearch.VehicleInfoSearch(vehicleInfoSearchDto)
 
         ' DB接続情報を取得
         Dim dbConnInfo As New DBConnInfoCommon

@@ -1,5 +1,124 @@
 ﻿Public Class AccountForm
 
+    Private Sub AccountFormLoad(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Dim accountSearchSql As New AccountSearchSql
+
+        Dim sql As String = accountSearchSql.AccountAcq()
+
+        ' DB接続情報を取得
+        Dim dbConnInfo As New DBConnInfoCommon
+
+        ' DBへの接続
+        Dim con As New SqlClient.SqlConnection With {
+            .ConnectionString = dbConnInfo.GetDBConnInfo
+        }
+
+        Try
+            con.Open()
+
+            Dim command As New SqlClient.SqlCommand With {
+                .Connection = con,
+                .CommandType = CommandType.Text,
+                .CommandText = sql
+            }
+
+            ' SQLの結果を取得する
+            Dim sr As SqlClient.SqlDataReader
+
+            sr = command.ExecuteReader()
+
+            command.Dispose()
+
+            ' 列数を初期化
+            Me.gridSearchResults.RowCount = 1
+
+            Dim rowIndex As Integer
+
+            While sr.Read
+
+                '1行追加
+                Me.gridSearchResults.Rows.Add()
+
+                Me.gridSearchResults.Rows(rowIndex).Cells(0).Value = sr("id")
+                Me.gridSearchResults.Rows(rowIndex).Cells(1).Value = sr("password")
+
+                rowIndex += 1
+
+            End While
+
+        Finally
+            ' コネクションの破棄
+            If con.State <> ConnectionState.Closed Then
+
+                con.Close()
+
+                con.Dispose()
+            End If
+
+        End Try
+
+    End Sub
+
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+
+        Dim accountSearchSql As New AccountSearchSql
+
+        Dim sql As String = accountSearchSql.AccountIdOrPwSearch(Me.txtId.Text, Me.txtPassword.Text)
+
+        ' DB接続情報を取得
+        Dim dbConnInfo As New DBConnInfoCommon
+
+        ' DBへの接続
+        Dim con As New SqlClient.SqlConnection With {
+            .ConnectionString = dbConnInfo.GetDBConnInfo
+        }
+
+        Try
+            con.Open()
+
+            Dim command As New SqlClient.SqlCommand With {
+                .Connection = con,
+                .CommandType = CommandType.Text,
+                .CommandText = sql
+            }
+
+            ' SQLの結果を取得する
+            Dim sr As SqlClient.SqlDataReader
+
+            sr = command.ExecuteReader()
+
+            command.Dispose()
+
+            ' 列数を初期化
+            Me.gridSearchResults.RowCount = 1
+
+            Dim rowIndex As Integer
+
+            While sr.Read
+
+                '1行追加
+                Me.gridSearchResults.Rows.Add()
+
+                Me.gridSearchResults.Rows(rowIndex).Cells(0).Value = sr("id")
+                Me.gridSearchResults.Rows(rowIndex).Cells(1).Value = sr("password")
+
+                rowIndex += 1
+
+            End While
+
+        Finally
+            ' コネクションの破棄
+            If con.State <> ConnectionState.Closed Then
+
+                con.Close()
+
+                con.Dispose()
+            End If
+
+        End Try
+    End Sub
+
     Private Sub BtnInsertClick(sender As Object, e As EventArgs) Handles btnInsert.Click
 
         ' DB接続情報を取得
