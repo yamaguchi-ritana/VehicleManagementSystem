@@ -2,10 +2,13 @@
 
     Dim id As String
 
-    Public ReadOnly Property Getid() As String
+    Public Property Gsid() As String
         Get
             Return id
         End Get
+        Set(ByVal value As String)
+            id = value
+        End Set
     End Property
 
     Private Sub SystemManagementFormLoad(sender As Object, e As EventArgs) Handles MyBase.Load

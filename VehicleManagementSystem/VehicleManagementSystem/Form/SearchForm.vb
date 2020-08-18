@@ -123,11 +123,13 @@
         End Try
     End Sub
 
-    Private Sub gridSearchResultsCellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridSearchResults.CellContentDoubleClick
+    Private Sub GridSearchResultsCellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridSearchResults.CellContentDoubleClick
+
+        Dim selectRow As Integer = Me.gridSearchResults.SelectedCells(0).RowIndex
 
         For Each selectedVehicleDto As SelectedVehicleDto In selectedVehicleDtoList
-            If selectedVehicleDto.GsRowIndex() = Me.gridSearchResults.SelectedCells(0).RowIndex Then
-                VehiclePk = selectedVehicleDto.GsVehiclePk
+            If selectedVehicleDto.GsRowIndex() = selectRow Then
+                vehiclePk = selectedVehicleDto.GsVehiclePk
             End If
         Next
 

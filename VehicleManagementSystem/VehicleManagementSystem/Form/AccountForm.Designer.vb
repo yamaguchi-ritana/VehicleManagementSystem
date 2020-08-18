@@ -40,11 +40,12 @@ Partial Class AccountForm
         '
         Me.gridSearchResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gridSearchResults.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2})
-        Me.gridSearchResults.Location = New System.Drawing.Point(29, 31)
+        Me.gridSearchResults.Location = New System.Drawing.Point(22, 25)
+        Me.gridSearchResults.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.gridSearchResults.Name = "gridSearchResults"
         Me.gridSearchResults.RowHeadersWidth = 51
         Me.gridSearchResults.RowTemplate.Height = 24
-        Me.gridSearchResults.Size = New System.Drawing.Size(417, 503)
+        Me.gridSearchResults.Size = New System.Drawing.Size(313, 402)
         Me.gridSearchResults.TabIndex = 0
         '
         'Column1
@@ -64,82 +65,84 @@ Partial Class AccountForm
         'lblId
         '
         Me.lblId.AutoSize = True
-        Me.lblId.Location = New System.Drawing.Point(471, 31)
+        Me.lblId.Location = New System.Drawing.Point(353, 25)
+        Me.lblId.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblId.Name = "lblId"
-        Me.lblId.Size = New System.Drawing.Size(21, 15)
+        Me.lblId.Size = New System.Drawing.Size(16, 12)
         Me.lblId.TabIndex = 3
         Me.lblId.Text = "ID"
         '
         'lblPassword
         '
         Me.lblPassword.AutoSize = True
-        Me.lblPassword.Location = New System.Drawing.Point(688, 31)
+        Me.lblPassword.Location = New System.Drawing.Point(516, 25)
+        Me.lblPassword.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblPassword.Name = "lblPassword"
-        Me.lblPassword.Size = New System.Drawing.Size(67, 15)
+        Me.lblPassword.Size = New System.Drawing.Size(54, 12)
         Me.lblPassword.TabIndex = 4
         Me.lblPassword.Text = "Password"
         '
         'txtId
         '
-        Me.txtId.Location = New System.Drawing.Point(474, 57)
-        Me.txtId.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.txtId.Location = New System.Drawing.Point(356, 46)
+        Me.txtId.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.txtId.Name = "txtId"
-        Me.txtId.Size = New System.Drawing.Size(190, 22)
+        Me.txtId.Size = New System.Drawing.Size(144, 19)
         Me.txtId.TabIndex = 5
         '
         'txtPassword
         '
-        Me.txtPassword.Location = New System.Drawing.Point(691, 57)
-        Me.txtPassword.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.txtPassword.Location = New System.Drawing.Point(518, 46)
+        Me.txtPassword.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.txtPassword.Name = "txtPassword"
-        Me.txtPassword.Size = New System.Drawing.Size(190, 22)
+        Me.txtPassword.Size = New System.Drawing.Size(144, 19)
         Me.txtPassword.TabIndex = 6
         '
         'btnSearch
         '
-        Me.btnSearch.Location = New System.Drawing.Point(911, 55)
-        Me.btnSearch.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnSearch.Location = New System.Drawing.Point(683, 44)
+        Me.btnSearch.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(129, 32)
+        Me.btnSearch.Size = New System.Drawing.Size(97, 26)
         Me.btnSearch.TabIndex = 7
         Me.btnSearch.Text = "検索(&S)"
         Me.btnSearch.UseVisualStyleBackColor = True
         '
         'btnInsert
         '
-        Me.btnInsert.Location = New System.Drawing.Point(911, 121)
-        Me.btnInsert.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnInsert.Location = New System.Drawing.Point(683, 97)
+        Me.btnInsert.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btnInsert.Name = "btnInsert"
-        Me.btnInsert.Size = New System.Drawing.Size(129, 32)
+        Me.btnInsert.Size = New System.Drawing.Size(97, 26)
         Me.btnInsert.TabIndex = 8
         Me.btnInsert.Text = "追加(&I)"
         Me.btnInsert.UseVisualStyleBackColor = True
         '
         'btnUpdate
         '
-        Me.btnUpdate.Location = New System.Drawing.Point(911, 186)
-        Me.btnUpdate.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnUpdate.Location = New System.Drawing.Point(683, 149)
+        Me.btnUpdate.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(129, 31)
+        Me.btnUpdate.Size = New System.Drawing.Size(97, 25)
         Me.btnUpdate.TabIndex = 9
         Me.btnUpdate.Text = "更新(&U)"
         Me.btnUpdate.UseVisualStyleBackColor = True
         '
         'btnReturn
         '
-        Me.btnReturn.Location = New System.Drawing.Point(911, 252)
-        Me.btnReturn.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnReturn.Location = New System.Drawing.Point(683, 202)
+        Me.btnReturn.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btnReturn.Name = "btnReturn"
-        Me.btnReturn.Size = New System.Drawing.Size(129, 31)
+        Me.btnReturn.Size = New System.Drawing.Size(97, 25)
         Me.btnReturn.TabIndex = 10
         Me.btnReturn.Text = "戻る(&R)"
         Me.btnReturn.UseVisualStyleBackColor = True
         '
         'AccountForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 15.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1067, 562)
+        Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.btnReturn)
         Me.Controls.Add(Me.btnUpdate)
         Me.Controls.Add(Me.btnInsert)
@@ -150,6 +153,7 @@ Partial Class AccountForm
         Me.Controls.Add(Me.lblId)
         Me.Controls.Add(Me.gridSearchResults)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.MaximizeBox = False
         Me.Name = "AccountForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

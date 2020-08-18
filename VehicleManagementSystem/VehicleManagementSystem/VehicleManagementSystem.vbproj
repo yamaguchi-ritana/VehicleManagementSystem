@@ -79,6 +79,7 @@
     <Compile Include="Common\DBConnInfoCommon.vb" />
     <Compile Include="Const\CharacterConst.vb" />
     <Compile Include="Const\MessageConst.vb" />
+    <Compile Include="Dto\AccountDto.vb" />
     <Compile Include="Dto\SelectedVehicleDto.vb" />
     <Compile Include="Dto\VehicleInfoSearchDto.vb" />
     <Compile Include="Form\AccountForm.Designer.vb">
@@ -139,6 +140,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Sql\AccountSql.vb" />
     <Compile Include="Sql\AccountInsertSql.vb" />
     <Compile Include="Sql\AccountSearchSql.vb" />
     <Compile Include="Sql\BackupSql.vb" />

@@ -64,7 +64,7 @@
                 Me.txtMailAddress.Text = sr("mail_address")
                 Me.txtPostalCode.Text = sr("postal_code")
                 Me.txtStreetAddress.Text = sr("street_address")
-                Me.RichTxtRemark.Text = sr("remark")
+                ' Me.RichTxtRemark.Text = sr("remark")
             End While
 
         Finally
@@ -80,7 +80,7 @@
 
     End Sub
 
-    Private Sub btnSearchClick(sender As Object, e As EventArgs) Handles btnReturn.Click
+    Private Sub BtnSearchClick(sender As Object, e As EventArgs) Handles btnReturn.Click
         ' フォームを閉じる
         Me.Close()
     End Sub
