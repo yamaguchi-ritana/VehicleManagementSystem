@@ -31,6 +31,7 @@ Partial Class LoginForm
         Me.btnEnd = New System.Windows.Forms.Button()
         Me.lblVer = New System.Windows.Forms.Label()
         Me.lblCopywriter = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'txtId
@@ -115,12 +116,22 @@ Partial Class LoginForm
         Me.lblCopywriter.TabIndex = 9
         Me.lblCopywriter.Text = "© 1GW"
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(23, 234)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 11
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'LoginForm
         '
         Me.AcceptButton = Me.btnLogin
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(515, 340)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.lblVer)
         Me.Controls.Add(Me.lblCopywriter)
         Me.Controls.Add(Me.btnEnd)
@@ -150,4 +161,5 @@ Partial Class LoginForm
     Friend WithEvents btnEnd As Button
     Friend WithEvents lblVer As Label
     Friend WithEvents lblCopywriter As Label
+    Friend WithEvents Button1 As Button
 End Class

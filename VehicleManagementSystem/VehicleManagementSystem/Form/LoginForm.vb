@@ -1,4 +1,6 @@
-﻿Public Class LoginForm
+﻿'Imports System.Data.SqlClient
+
+Public Class LoginForm
 
     Dim id As String
 
@@ -8,11 +10,11 @@
         End Get
     End Property
 
-    Private Sub lblId_Click(sender As Object, e As EventArgs) Handles lblId.Click
+    Private Sub LblIdClick(sender As Object, e As EventArgs) Handles lblId.Click
         Me.txtId.Focus()
     End Sub
 
-    Private Sub lblPassword_Click(sender As Object, e As EventArgs) Handles lblPassword.Click
+    Private Sub LblPasswordClick(sender As Object, e As EventArgs) Handles lblPassword.Click
         Me.txtPassword.Focus()
     End Sub
 
@@ -120,4 +122,66 @@
         Application.Exit()
     End Sub
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        ' DB接続情報を取得
+        Dim dbConnInfo As New DBConnInfoCommon
+
+        ' DBへの接続
+        Dim con As New SqlClient.SqlConnection With {
+            .ConnectionString = dbConnInfo.GetDBConnInfo
+        }
+
+        Try
+            con.Open()
+
+            'Dim tran As SqlClient.SqlTransaction
+            'tran = con.BeginTransaction
+
+            Try
+                Dim command As New SqlClient.SqlCommand With {
+                .Connection = con,
+                .CommandType = CommandType.Text,
+                .CommandText = "BEGIN TRAN SELECT * FROM T_ACCOUNT WITH(TABLOCKX);"
+            }
+                '.Transaction = tran
+                ' SQLの結果を取得する
+                Dim sr As SqlClient.SqlDataReader
+
+                sr = command.ExecuteReader()
+                sr.Close()
+
+                command.CommandText = "update t_account set password = 'sex' where id = 'user2';"
+
+                Dim a As Integer = command.ExecuteNonQuery()
+
+                command.CommandText = "COMMIT TRAN"
+
+                command.ExecuteNonQuery()
+
+                'tran.Commit()
+
+                command.Dispose()
+
+                ' MessageBox.Show(msgConst.GetAddedAccount, msgConst.GetAddAccount, MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+
+            Catch ex As Exception
+                'ロールバック
+                'tran.Rollback()
+                Throw
+            Finally
+                ' コネクションの破棄
+                If con.State <> ConnectionState.Closed Then
+
+                    con.Close()
+
+                    con.Dispose()
+                End If
+            End Try
+        Catch ex As Exception
+            MessageBox.Show("アカウントテーブルが更新されています。", "更新失敗", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+
+        End Try
+
+    End Sub
 End Class

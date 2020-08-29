@@ -42,6 +42,16 @@
 
     Private Const addAccount As String = "アカウントの追加"
 
+    Private Const idOrPwChk As String = "IDまたはPassword入力して下さい。"
+
+    Private Const idOrPwChkErr As String = "IDまたはPassword入力チェックエラー"
+
+    Private Const userSlctChk As String = "ユーザーを選択して下さい。"
+
+    Private Const userSlctChkErr As String = "ユーザーを選択チェックエラー"
+
+    Private Const updedOtherUserChk As String = "他のユーザーに更新されています。"
+
     Public ReadOnly Property GetEnterId() As String
         Get
             Return enterId
@@ -167,5 +177,38 @@
             Return addAccount
         End Get
     End Property
+
+    Public ReadOnly Property GetIdOrPwChk() As String
+        Get
+            Return IdOrPwChk
+        End Get
+    End Property
+
+    Public ReadOnly Property GetIdOrPwChkErr() As String
+        Get
+            Return IdOrPwChkErr
+        End Get
+    End Property
+
+    Public ReadOnly Property GetUserSlctChk() As String
+        Get
+            Return userSlctChk
+        End Get
+    End Property
+
+    Public ReadOnly Property GetUserSlctChkErr() As String
+        Get
+            Return userSlctChkErr
+        End Get
+    End Property
+
+    Public ReadOnly Property GetUpdedOtherUserChk() As String
+        Get
+            Return updedOtherUserChk
+        End Get
+    End Property
+
+
+
 
 End Class

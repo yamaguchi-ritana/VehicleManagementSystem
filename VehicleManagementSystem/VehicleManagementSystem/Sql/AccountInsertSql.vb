@@ -13,6 +13,7 @@
         sql.Append("'" + userId + "', ")
         sql.Append("GETDATE()")
         sql.Append(");")
+        sql.Append("COMMIT TRAN")
 
         Return sql.ToString
 

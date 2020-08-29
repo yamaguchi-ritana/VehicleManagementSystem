@@ -79,6 +79,7 @@
     <Compile Include="Common\DBConnInfoCommon.vb" />
     <Compile Include="Const\CharacterConst.vb" />
     <Compile Include="Const\MessageConst.vb" />
+    <Compile Include="Dto\AccountChkResultDto.vb" />
     <Compile Include="Dto\AccountDto.vb" />
     <Compile Include="Dto\SelectedVehicleDto.vb" />
     <Compile Include="Dto\VehicleInfoSearchDto.vb" />

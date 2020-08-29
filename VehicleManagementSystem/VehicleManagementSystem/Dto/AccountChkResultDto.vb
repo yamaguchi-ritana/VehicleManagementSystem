@@ -1,19 +1,30 @@
-﻿Public Class AccountDto
+﻿Public Class AccountChkResultDto
 
-    Private rowIndex As Integer
+    Dim processEndFlg As Boolean
 
-    Private id As String
+    Dim command As New SqlClient.SqlCommand
 
-    Private pw As String
+    Dim id As String
 
-    Private updDtTime As String
+    Dim pw As String
 
-    Public Property GsRowIndex() As Integer
+    Dim updDtTime As String
+
+    Public Property GsProcessEndFlg() As Boolean
         Get
-            Return rowIndex
+            Return processEndFlg
         End Get
-        Set(ByVal value As Integer)
-            rowIndex = value
+        Set(ByVal value As Boolean)
+            processEndFlg = value
+        End Set
+    End Property
+
+    Public Property GsCommand() As SqlClient.SqlCommand
+        Get
+            Return command
+        End Get
+        Set(ByVal value As SqlClient.SqlCommand)
+            command = value
         End Set
     End Property
 

@@ -14,6 +14,7 @@
         sql.Append("WHERE ")
         sql.Append("id = " + "'" + updId + "' ")
         sql.Append(";")
+        sql.Append("COMMIT TRAN ")
 
         Return sql.ToString
 

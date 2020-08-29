@@ -21,10 +21,11 @@
 
         Dim sql As New System.Text.StringBuilder()
 
+        sql.Append("BEGIN TRAN ")
         sql.Append("SELECT ")
         sql.Append("* ")
         sql.Append("FROM ")
-        sql.Append("t_account ta ")
+        sql.Append("t_account ta WITH(TABLOCKX) ")
         sql.Append("WHERE ")
         sql.Append("ta.id = '" + id + "' ")
         sql.Append(";")
@@ -33,13 +34,33 @@
 
     End Function
 
+    Function AccountIdSearchChk(id As String, updDtTime As String) As String
+
+        Dim sql As New System.Text.StringBuilder()
+
+        sql.Append("BEGIN TRAN ")
+        sql.Append("SELECT ")
+        sql.Append("* ")
+        sql.Append("FROM ")
+        sql.Append("t_account ta WITH(TABLOCKX) ")
+        sql.Append("WHERE ")
+        sql.Append("ta.id = '" + id + "' ")
+        sql.Append("AND ")
+        sql.Append("ta.update_date_time = '" + updDtTime + "' ")
+        sql.Append(";")
+
+        Return sql.ToString
+
+    End Function
 
     Function AccountAcq() As String
 
         Dim sql As New System.Text.StringBuilder()
 
         sql.Append("SELECT ")
-        sql.Append("* ")
+        sql.Append("ta.id, ")
+        sql.Append("ta.password, ")
+        sql.Append("CONVERT(VARCHAR, ta.UPDATE_DATE_TIME, 21) AS update_date_time ")
         sql.Append("FROM ")
         sql.Append("t_account ta ")
         sql.Append("ORDER BY ")
@@ -84,5 +105,18 @@
         Return sql.ToString
 
     End Function
+
+    Function CommitTran() As String
+
+        Dim sql As New System.Text.StringBuilder()
+
+        sql.Append("COMMIT TRAN ")
+
+        Return sql.ToString
+
+    End Function
+
+
+
 
 End Class

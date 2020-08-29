@@ -30,9 +30,10 @@ Partial Class AccountForm
         Me.txtId = New System.Windows.Forms.TextBox()
         Me.txtPassword = New System.Windows.Forms.TextBox()
         Me.btnSearch = New System.Windows.Forms.Button()
-        Me.btnInsert = New System.Windows.Forms.Button()
+        Me.btnAdd = New System.Windows.Forms.Button()
         Me.btnUpdate = New System.Windows.Forms.Button()
         Me.btnReturn = New System.Windows.Forms.Button()
+        Me.BtnDel = New System.Windows.Forms.Button()
         CType(Me.gridSearchResults, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -40,12 +41,12 @@ Partial Class AccountForm
         '
         Me.gridSearchResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gridSearchResults.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2})
-        Me.gridSearchResults.Location = New System.Drawing.Point(22, 25)
-        Me.gridSearchResults.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.gridSearchResults.Location = New System.Drawing.Point(29, 31)
+        Me.gridSearchResults.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.gridSearchResults.Name = "gridSearchResults"
         Me.gridSearchResults.RowHeadersWidth = 51
         Me.gridSearchResults.RowTemplate.Height = 24
-        Me.gridSearchResults.Size = New System.Drawing.Size(313, 402)
+        Me.gridSearchResults.Size = New System.Drawing.Size(417, 502)
         Me.gridSearchResults.TabIndex = 0
         '
         'Column1
@@ -65,87 +66,96 @@ Partial Class AccountForm
         'lblId
         '
         Me.lblId.AutoSize = True
-        Me.lblId.Location = New System.Drawing.Point(353, 25)
-        Me.lblId.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblId.Location = New System.Drawing.Point(471, 31)
         Me.lblId.Name = "lblId"
-        Me.lblId.Size = New System.Drawing.Size(16, 12)
+        Me.lblId.Size = New System.Drawing.Size(21, 15)
         Me.lblId.TabIndex = 3
         Me.lblId.Text = "ID"
         '
         'lblPassword
         '
         Me.lblPassword.AutoSize = True
-        Me.lblPassword.Location = New System.Drawing.Point(516, 25)
-        Me.lblPassword.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblPassword.Location = New System.Drawing.Point(688, 31)
         Me.lblPassword.Name = "lblPassword"
-        Me.lblPassword.Size = New System.Drawing.Size(54, 12)
+        Me.lblPassword.Size = New System.Drawing.Size(67, 15)
         Me.lblPassword.TabIndex = 4
         Me.lblPassword.Text = "Password"
         '
         'txtId
         '
-        Me.txtId.Location = New System.Drawing.Point(356, 46)
-        Me.txtId.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtId.Location = New System.Drawing.Point(475, 58)
+        Me.txtId.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txtId.Name = "txtId"
-        Me.txtId.Size = New System.Drawing.Size(144, 19)
+        Me.txtId.Size = New System.Drawing.Size(191, 22)
         Me.txtId.TabIndex = 5
         '
         'txtPassword
         '
-        Me.txtPassword.Location = New System.Drawing.Point(518, 46)
-        Me.txtPassword.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtPassword.Location = New System.Drawing.Point(691, 58)
+        Me.txtPassword.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txtPassword.Name = "txtPassword"
-        Me.txtPassword.Size = New System.Drawing.Size(144, 19)
+        Me.txtPassword.Size = New System.Drawing.Size(191, 22)
         Me.txtPassword.TabIndex = 6
         '
         'btnSearch
         '
-        Me.btnSearch.Location = New System.Drawing.Point(683, 44)
-        Me.btnSearch.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnSearch.Location = New System.Drawing.Point(911, 55)
+        Me.btnSearch.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(97, 26)
+        Me.btnSearch.Size = New System.Drawing.Size(129, 32)
         Me.btnSearch.TabIndex = 7
         Me.btnSearch.Text = "検索(&S)"
         Me.btnSearch.UseVisualStyleBackColor = True
         '
-        'btnInsert
+        'btnAdd
         '
-        Me.btnInsert.Location = New System.Drawing.Point(683, 97)
-        Me.btnInsert.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.btnInsert.Name = "btnInsert"
-        Me.btnInsert.Size = New System.Drawing.Size(97, 26)
-        Me.btnInsert.TabIndex = 8
-        Me.btnInsert.Text = "追加(&I)"
-        Me.btnInsert.UseVisualStyleBackColor = True
+        Me.btnAdd.Location = New System.Drawing.Point(911, 119)
+        Me.btnAdd.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnAdd.Name = "btnAdd"
+        Me.btnAdd.Size = New System.Drawing.Size(129, 32)
+        Me.btnAdd.TabIndex = 8
+        Me.btnAdd.Text = "追加(&A)"
+        Me.btnAdd.UseVisualStyleBackColor = True
         '
         'btnUpdate
         '
-        Me.btnUpdate.Location = New System.Drawing.Point(683, 149)
-        Me.btnUpdate.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnUpdate.Location = New System.Drawing.Point(911, 184)
+        Me.btnUpdate.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(97, 25)
+        Me.btnUpdate.Size = New System.Drawing.Size(129, 31)
         Me.btnUpdate.TabIndex = 9
         Me.btnUpdate.Text = "更新(&U)"
         Me.btnUpdate.UseVisualStyleBackColor = True
         '
         'btnReturn
         '
-        Me.btnReturn.Location = New System.Drawing.Point(683, 202)
-        Me.btnReturn.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnReturn.Location = New System.Drawing.Point(911, 313)
+        Me.btnReturn.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnReturn.Name = "btnReturn"
-        Me.btnReturn.Size = New System.Drawing.Size(97, 25)
+        Me.btnReturn.Size = New System.Drawing.Size(129, 31)
         Me.btnReturn.TabIndex = 10
         Me.btnReturn.Text = "戻る(&R)"
         Me.btnReturn.UseVisualStyleBackColor = True
         '
+        'BtnDel
+        '
+        Me.BtnDel.Location = New System.Drawing.Point(911, 248)
+        Me.BtnDel.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.BtnDel.Name = "BtnDel"
+        Me.BtnDel.Size = New System.Drawing.Size(129, 31)
+        Me.BtnDel.TabIndex = 11
+        Me.BtnDel.Text = "削除(&D)"
+        Me.BtnDel.UseVisualStyleBackColor = True
+        '
         'AccountForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(1067, 562)
+        Me.Controls.Add(Me.BtnDel)
         Me.Controls.Add(Me.btnReturn)
         Me.Controls.Add(Me.btnUpdate)
-        Me.Controls.Add(Me.btnInsert)
+        Me.Controls.Add(Me.btnAdd)
         Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.txtPassword)
         Me.Controls.Add(Me.txtId)
@@ -153,7 +163,7 @@ Partial Class AccountForm
         Me.Controls.Add(Me.lblId)
         Me.Controls.Add(Me.gridSearchResults)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.MaximizeBox = False
         Me.Name = "AccountForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -170,9 +180,10 @@ Partial Class AccountForm
     Friend WithEvents txtId As TextBox
     Friend WithEvents txtPassword As TextBox
     Friend WithEvents btnSearch As Button
-    Friend WithEvents btnInsert As Button
+    Friend WithEvents btnAdd As Button
     Friend WithEvents btnUpdate As Button
     Friend WithEvents btnReturn As Button
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
+    Friend WithEvents BtnDel As Button
 End Class
