@@ -64,6 +64,10 @@
 
     Private Const acctDelCfm As String = "アカウント削除確認"
 
+    Private Const updedAcct As String = "アカウントを更新しました。"
+
+    Private Const updAcct As String = "アカウントの更新"
+
     Public ReadOnly Property GetEnterId() As String
         Get
             Return enterId
@@ -253,6 +257,18 @@
     Public ReadOnly Property GetAcctDelCfm() As String
         Get
             Return acctDelCfm
+        End Get
+    End Property
+
+    Public ReadOnly Property GetUpdedAcct() As String
+        Get
+            Return updedAcct
+        End Get
+    End Property
+
+    Public ReadOnly Property GetUpdAcct() As String
+        Get
+            Return updAcct
         End Get
     End Property
 

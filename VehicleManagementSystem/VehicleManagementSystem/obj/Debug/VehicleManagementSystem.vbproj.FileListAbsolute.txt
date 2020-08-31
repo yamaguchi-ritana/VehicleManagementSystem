@@ -112,3 +112,4 @@ I:\GitHub\VehicleManagementSystem\VehicleManagementSystem\obj\Debug\VehicleManag
 I:\GitHub\VehicleManagementSystem\VehicleManagementSystem\obj\Debug\VehicleManagementSystem.exe
 I:\GitHub\VehicleManagementSystem\VehicleManagementSystem\obj\Debug\VehicleManagementSystem.xml
 I:\GitHub\VehicleManagementSystem\VehicleManagementSystem\obj\Debug\VehicleManagementSystem.pdb
+I:\GitHub\VehicleManagementSystem\VehicleManagementSystem\obj\Debug\VehicleManagementSystem.vbprojAssemblyReference.cache

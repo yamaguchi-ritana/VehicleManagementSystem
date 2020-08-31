@@ -567,9 +567,9 @@
             ' sqlの設定解放
             accountChkResult.GsCommand.Dispose()
 
-            ' TODO
+            ' 追加処理が成功時に結果を表示
             If 0 < insResult Then
-
+                MessageBox.Show(msgConst.GetUpdedAcct, msgConst.GetUpdAcct, MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
             End If
 
             ' loginIdの更新
