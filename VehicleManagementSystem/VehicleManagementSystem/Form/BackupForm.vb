@@ -39,7 +39,7 @@
             Return
         End If
 
-        Dim backupSql As New BackupSql
+        Dim backupSql As New BackupFormSql
 
         Dim characterConst As New CharacterConst
 

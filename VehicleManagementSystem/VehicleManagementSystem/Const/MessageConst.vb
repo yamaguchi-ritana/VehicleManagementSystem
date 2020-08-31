@@ -52,6 +52,18 @@
 
     Private Const updedOtherUserChk As String = "他のユーザーに更新されています。"
 
+    Private Const acctAddChk As String = "アカウントを追加します。"
+
+    Private Const acctAddCfm As String = "アカウント追加確認"
+
+    Private Const acctUpdChk As String = "アカウントを更新します。"
+
+    Private Const acctUpdCfm As String = "アカウント更新確認"
+
+    Private Const acctDelChk As String = "アカウントを削除します。"
+
+    Private Const acctDelCfm As String = "アカウント削除確認"
+
     Public ReadOnly Property GetEnterId() As String
         Get
             Return enterId
@@ -208,7 +220,40 @@
         End Get
     End Property
 
+    Public ReadOnly Property GetAcctAddChk() As String
+        Get
+            Return acctAddChk
+        End Get
+    End Property
 
+    Public ReadOnly Property GetAcctAddCfm() As String
+        Get
+            Return acctAddCfm
+        End Get
+    End Property
 
+    Public ReadOnly Property GetAcctUpdChk() As String
+        Get
+            Return acctUpdChk
+        End Get
+    End Property
+
+    Public ReadOnly Property GetAcctUpdCfm() As String
+        Get
+            Return acctUpdCfm
+        End Get
+    End Property
+
+    Public ReadOnly Property GetAcctDelChk() As String
+        Get
+            Return acctDelChk
+        End Get
+    End Property
+
+    Public ReadOnly Property GetAcctDelCfm() As String
+        Get
+            Return acctDelCfm
+        End Get
+    End Property
 
 End Class

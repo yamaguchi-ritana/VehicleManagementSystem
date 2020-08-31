@@ -3,7 +3,7 @@
 
         Dim frm As SearchForm = CType(Me.Owner, SearchForm)
 
-        Dim vehicleInfoSql As New VehicleInfoSql
+        Dim vehicleInfoSql As New VehicleInformationFormSql
 
         Dim sql As String = vehicleInfoSql.VehicleInfo(frm.GetVehiclePk())
 

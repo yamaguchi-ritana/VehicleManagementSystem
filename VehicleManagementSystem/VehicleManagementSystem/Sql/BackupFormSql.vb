@@ -1,4 +1,4 @@
-﻿Public Class BackupSql
+﻿Public Class BackupFormSql
     Function Backup(path As String, nowDate As String) As String
 
         Dim sql As New System.Text.StringBuilder()

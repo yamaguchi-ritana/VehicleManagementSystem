@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class LoginForm
     Inherits System.Windows.Forms.Form
 
     'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class LoginForm
     'メモ: 以下のプロシージャは Windows フォーム デザイナーで必要です。
     'Windows フォーム デザイナーを使用して変更できます。  
     'コード エディターを使って変更しないでください。
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.txtId = New System.Windows.Forms.TextBox()
         Me.txtPassword = New System.Windows.Forms.TextBox()
@@ -31,32 +31,31 @@ Partial Class LoginForm
         Me.btnEnd = New System.Windows.Forms.Button()
         Me.lblVer = New System.Windows.Forms.Label()
         Me.lblCopywriter = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'txtId
         '
-        Me.txtId.Location = New System.Drawing.Point(167, 108)
-        Me.txtId.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.txtId.Location = New System.Drawing.Point(125, 86)
+        Me.txtId.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.txtId.Name = "txtId"
-        Me.txtId.Size = New System.Drawing.Size(201, 22)
+        Me.txtId.Size = New System.Drawing.Size(152, 19)
         Me.txtId.TabIndex = 2
         '
         'txtPassword
         '
-        Me.txtPassword.Location = New System.Drawing.Point(167, 182)
-        Me.txtPassword.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.txtPassword.Location = New System.Drawing.Point(125, 146)
+        Me.txtPassword.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(9679)
-        Me.txtPassword.Size = New System.Drawing.Size(201, 22)
+        Me.txtPassword.Size = New System.Drawing.Size(152, 19)
         Me.txtPassword.TabIndex = 4
         '
         'btnLogin
         '
-        Me.btnLogin.Location = New System.Drawing.Point(167, 228)
-        Me.btnLogin.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnLogin.Location = New System.Drawing.Point(125, 182)
+        Me.btnLogin.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btnLogin.Name = "btnLogin"
-        Me.btnLogin.Size = New System.Drawing.Size(92, 30)
+        Me.btnLogin.Size = New System.Drawing.Size(69, 24)
         Me.btnLogin.TabIndex = 5
         Me.btnLogin.Text = "ログイン(&L)"
         Me.btnLogin.UseVisualStyleBackColor = True
@@ -64,36 +63,39 @@ Partial Class LoginForm
         'lblId
         '
         Me.lblId.AutoSize = True
-        Me.lblId.Location = New System.Drawing.Point(167, 88)
+        Me.lblId.Location = New System.Drawing.Point(125, 70)
+        Me.lblId.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblId.Name = "lblId"
-        Me.lblId.Size = New System.Drawing.Size(21, 15)
+        Me.lblId.Size = New System.Drawing.Size(16, 12)
         Me.lblId.TabIndex = 1
         Me.lblId.Text = "ID"
         '
         'lblPassword
         '
         Me.lblPassword.AutoSize = True
-        Me.lblPassword.Location = New System.Drawing.Point(167, 161)
+        Me.lblPassword.Location = New System.Drawing.Point(125, 129)
+        Me.lblPassword.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblPassword.Name = "lblPassword"
-        Me.lblPassword.Size = New System.Drawing.Size(67, 15)
+        Me.lblPassword.Size = New System.Drawing.Size(54, 12)
         Me.lblPassword.TabIndex = 3
         Me.lblPassword.Text = "Password"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(167, 38)
+        Me.Label3.Location = New System.Drawing.Point(125, 30)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(82, 15)
+        Me.Label3.Size = New System.Drawing.Size(66, 12)
         Me.Label3.TabIndex = 0
         Me.Label3.Text = "イメージ予定"
         '
         'btnEnd
         '
-        Me.btnEnd.Location = New System.Drawing.Point(277, 228)
-        Me.btnEnd.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnEnd.Location = New System.Drawing.Point(208, 182)
+        Me.btnEnd.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btnEnd.Name = "btnEnd"
-        Me.btnEnd.Size = New System.Drawing.Size(92, 30)
+        Me.btnEnd.Size = New System.Drawing.Size(69, 24)
         Me.btnEnd.TabIndex = 6
         Me.btnEnd.Text = "終了(&E)"
         Me.btnEnd.UseVisualStyleBackColor = True
@@ -101,37 +103,29 @@ Partial Class LoginForm
         'lblVer
         '
         Me.lblVer.AutoSize = True
-        Me.lblVer.Location = New System.Drawing.Point(256, 316)
+        Me.lblVer.Location = New System.Drawing.Point(192, 253)
+        Me.lblVer.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblVer.Name = "lblVer"
-        Me.lblVer.Size = New System.Drawing.Size(57, 15)
+        Me.lblVer.Size = New System.Drawing.Size(45, 12)
         Me.lblVer.TabIndex = 10
         Me.lblVer.Text = "ver予定"
         '
         'lblCopywriter
         '
         Me.lblCopywriter.AutoSize = True
-        Me.lblCopywriter.Location = New System.Drawing.Point(199, 318)
+        Me.lblCopywriter.Location = New System.Drawing.Point(149, 254)
+        Me.lblCopywriter.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblCopywriter.Name = "lblCopywriter"
-        Me.lblCopywriter.Size = New System.Drawing.Size(51, 15)
+        Me.lblCopywriter.Size = New System.Drawing.Size(40, 12)
         Me.lblCopywriter.TabIndex = 9
         Me.lblCopywriter.Text = "© 1GW"
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(23, 234)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 11
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
         '
         'LoginForm
         '
         Me.AcceptButton = Me.btnLogin
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 15.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(515, 340)
-        Me.Controls.Add(Me.Button1)
+        Me.ClientSize = New System.Drawing.Size(386, 272)
         Me.Controls.Add(Me.lblVer)
         Me.Controls.Add(Me.lblCopywriter)
         Me.Controls.Add(Me.btnEnd)
@@ -142,7 +136,7 @@ Partial Class LoginForm
         Me.Controls.Add(Me.txtPassword)
         Me.Controls.Add(Me.txtId)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.MaximizeBox = False
         Me.Name = "LoginForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -161,5 +155,4 @@ Partial Class LoginForm
     Friend WithEvents btnEnd As Button
     Friend WithEvents lblVer As Label
     Friend WithEvents lblCopywriter As Label
-    Friend WithEvents Button1 As Button
 End Class

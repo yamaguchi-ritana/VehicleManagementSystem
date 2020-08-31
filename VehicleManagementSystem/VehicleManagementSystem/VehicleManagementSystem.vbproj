@@ -141,12 +141,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Sql\AccountSql.vb" />
-    <Compile Include="Sql\AccountInsertSql.vb" />
-    <Compile Include="Sql\AccountSearchSql.vb" />
-    <Compile Include="Sql\BackupSql.vb" />
-    <Compile Include="Sql\VehicleInfoSql.vb" />
-    <Compile Include="Sql\VehicleSearchSql.vb" />
+    <Compile Include="Sql\AccountFormSql.vb" />
+    <Compile Include="Sql\BackupFormSql.vb" />
+    <Compile Include="Sql\LoginFormSql.vb" />
+    <Compile Include="Sql\VehicleInformationFormSql.vb" />
+    <Compile Include="Sql\SearchFormSql.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Form\AccountForm.resx">

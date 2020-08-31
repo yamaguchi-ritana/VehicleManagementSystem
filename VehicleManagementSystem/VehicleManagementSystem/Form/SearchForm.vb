@@ -41,7 +41,7 @@
             .GsDesignatedNumber = Me.txtDesignatedNumber.Text
         }
 
-        Dim vehicleSearch As New VehicleSearchSql
+        Dim vehicleSearch As New SearchFormSql
 
         Dim sql As String = vehicleSearch.VehicleInfoSearch(vehicleInfoSearchDto)
 

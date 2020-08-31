@@ -24,12 +24,20 @@
 
     End Sub
 
+    Private Sub LblIdClick(sender As Object, e As EventArgs) Handles LblId.Click
+        Me.TxtId.Focus()
+    End Sub
+
+    Private Sub LblPasswordClick(sender As Object, e As EventArgs) Handles LblPassword.Click
+        Me.TxtPassword.Focus()
+    End Sub
+
     ' 検索ボタン押下処理
     Private Sub BtnSearchClick(sender As Object, e As EventArgs) Handles btnSearch.Click
 
         ' sqlの生成
-        Dim acctSearchSql As New AccountSearchSql
-        Dim sql As String = acctSearchSql.AccountIdOrPwSearch(Me.txtId.Text, Me.txtPassword.Text)
+        Dim acctSearchSql As New AccountFormSql
+        Dim sql As String = acctSearchSql.AccountIdOrPwSearch(Me.TxtId.Text, Me.TxtPassword.Text)
 
         ' DBへの接続
         Dim con = New SqlClient.SqlConnection With {
@@ -118,9 +126,7 @@
 
         ' アカウントの存在チェック
         If acctChkResult.GsProcessEndFlg Then
-
             Return
-
         End If
 
         ' アカウント追加処理
@@ -136,20 +142,18 @@
             .ConnectionString = Me.dbConnInfo.GetDBConnInfo
         }
 
-        ' メッセージ情報
-        Dim msgConst As New MessageConst
-
         ' アカウントチェックの結果情報
         Dim accChkResult As New AccountChkResultDto
+
+        ' メッセージ情報
+        Dim msgConst As New MessageConst
 
         ' アカウントチェック処理
         Me.UpdExtChk(con, msgConst, accChkResult)
 
         ' アカウントの存在チェック
         If accChkResult.GsProcessEndFlg Then
-
             Return
-
         End If
 
         ' アカウント更新処理
@@ -160,6 +164,25 @@
     ' 削除ボタン押下処理
     Private Sub BtnDelClick(sender As Object, e As EventArgs) Handles BtnDel.Click
 
+        ' DBへの接続
+        Dim con As New SqlClient.SqlConnection With {
+            .ConnectionString = Me.dbConnInfo.GetDBConnInfo
+        }
+
+        ' メッセージ情報
+        Dim msgConst As New MessageConst
+
+        ' アカウントチェックの結果情報
+        Dim accChkResult As New AccountChkResultDto
+
+        ' アカウントチェック処理
+        Me.UpdExtChk(con, msgConst, accChkResult)
+
+
+
+
+
+
         ' アカウント画面の表示処理
         Me.AcctFrmLoad()
 
@@ -169,7 +192,7 @@
     Private Sub AcctFrmLoad()
 
         ' sqlの生成
-        Dim acctSearchSql As New AccountSearchSql
+        Dim acctSearchSql As New AccountFormSql
         Dim sql As String = acctSearchSql.AccountAcq()
 
         ' DBへの接続
@@ -245,18 +268,39 @@
         Dim chkTheInputCom As New CheckTheInputCommon
 
         ' txtIdが未入力の場合はエラー
-        If Not chkTheInputCom.CheckTheInput(Me.txtId.Text, msgConst.GetEnterId, msgConst.GetIdInputChkErr) Then
+        If Not chkTheInputCom.CheckTheInput(Me.TxtId.Text, msgConst.GetEnterId, msgConst.GetIdInputChkErr) Then
             accountChkResult.GsProcessEndFlg = True
+            Return
         End If
 
         ' txtPasswordが未入力の場合はエラー
-        If Not accountChkResult.GsProcessEndFlg AndAlso Not chkTheInputCom.CheckTheInput(Me.txtPassword.Text, msgConst.GetEnterPw, msgConst.GetPwInputChkErr) Then
+        If Not accountChkResult.GsProcessEndFlg AndAlso Not chkTheInputCom.CheckTheInput(Me.TxtPassword.Text, msgConst.GetEnterPw, msgConst.GetPwInputChkErr) Then
             accountChkResult.GsProcessEndFlg = True
+            Return
+        End If
+
+        ' 追加処理の確認
+        Dim result As DialogResult = MessageBox.Show(msgConst.GetAcctAddChk, msgConst.GetAcctAddCfm, MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
+
+        If result = DialogResult.Cancel Then
+            accountChkResult.GsProcessEndFlg = True
+            Return
+        End If
+
+        If accountChkResult.GsProcessEndFlg Then
+            ' コネクションの接続確認
+            If con.State <> ConnectionState.Closed Then
+
+                ' コネクションの破棄
+                con.Close()
+                con.Dispose()
+
+            End If
         End If
 
         ' sqlの生成
-        Dim acctSearchSql As New AccountSearchSql
-        Dim sql As String = acctSearchSql.AccountIdSearch(Me.txtId.Text)
+        Dim acctSearchSql As New AccountFormSql
+        Dim sql As String = acctSearchSql.AccountIdSearch(Me.TxtId.Text)
 
         Try
 
@@ -299,8 +343,8 @@
     Private Sub AddAcct(con As SqlClient.SqlConnection, msgConst As MessageConst, command As SqlClient.SqlCommand)
 
         ' sqlの生成
-        Dim accountInsertSql As New AccountInsertSql
-        Dim sql As String = accountInsertSql.AccountInsert(Me.txtId.Text, Me.txtPassword.Text, Me.loginId)
+        Dim AcctSearchSql As New AccountFormSql
+        Dim sql As String = AcctSearchSql.AccountInsert(Me.TxtId.Text, Me.TxtPassword.Text, Me.loginId)
 
         Try
 
@@ -322,8 +366,8 @@
             End If
 
             ' アカウント画面の初期化
-            Me.txtId.Text = Nothing
-            Me.txtPassword.Text = Nothing
+            Me.TxtId.Text = Nothing
+            Me.TxtPassword.Text = Nothing
 
         Finally
 
@@ -350,10 +394,9 @@
         Dim chkTheInputCom As New CheckTheInputCommon
 
         ' txtIdまたはtxtPassword未入力の場合はエラー
-        If Not chkTheInputCom.OneChkTheInput(Me.txtId.Text, Me.txtPassword.Text, msgConst.GetIdOrPwChk, msgConst.GetIdOrPwChkErr) Then
-
+        If Not chkTheInputCom.OneChkTheInput(Me.TxtId.Text, Me.TxtPassword.Text, msgConst.GetIdOrPwChk, msgConst.GetIdOrPwChkErr) Then
             accountChkResult.GsProcessEndFlg = True
-
+            Return
         End If
 
         ' 選択したデータグリッド行
@@ -361,9 +404,26 @@
 
         ' ユーザーを選択していない場合エラー
         If Not chkTheInputCom.IntEquivChk(Me.acctDtoList.Count, selectRow, msgConst.GetUserSlctChk, msgConst.GetUserSlctChkErr) Then
-
             accountChkResult.GsProcessEndFlg = True
+            Return
+        End If
 
+        ' 更新処理の確認
+        Dim result As DialogResult = MessageBox.Show(msgConst.GetAcctUpdChk, msgConst.GetAcctUpdCfm, MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
+        If result = DialogResult.Cancel Then
+            accountChkResult.GsProcessEndFlg = True
+            Return
+        End If
+
+        If accountChkResult.GsProcessEndFlg Then
+            ' コネクションの接続確認
+            If con.State <> ConnectionState.Closed Then
+
+                ' コネクションの破棄
+                con.Close()
+                con.Dispose()
+
+            End If
         End If
 
         ' ロードしたアカウント分処理
@@ -381,7 +441,7 @@
         Next
 
         ' sqlの生成
-        Dim accountSearchSql As New AccountSearchSql
+        Dim accountSearchSql As New AccountFormSql
         Dim sql As String = accountSearchSql.AccountIdSearchChk(accountChkResult.GsId, accountChkResult.GsUpdDtTime)
 
         Try
@@ -468,29 +528,29 @@
         End If
 
         ' ログインユーザーIDの更新ではない
-        If String.IsNullOrEmpty(Me.txtId.Text) Then
+        If String.IsNullOrEmpty(Me.TxtId.Text) Then
 
             id = accountChkResult.GsId
 
         Else　' ログインユーザーIDの更新
 
-            id = Me.txtId.Text
+            id = Me.TxtId.Text
 
         End If
 
         ' ログインユーザーPWの更新ではない
-        If String.IsNullOrEmpty(Me.txtPassword.Text) Then
+        If String.IsNullOrEmpty(Me.TxtPassword.Text) Then
 
             pw = accountChkResult.GsPw
 
         Else ' ログインユーザーPWの更新
 
-            pw = Me.txtPassword.Text
+            pw = Me.TxtPassword.Text
 
         End If
 
         ' sqlの結果を取得する
-        Dim accountSql As New AccountSql
+        Dim accountSql As New AccountFormSql
         Dim sql As String = accountSql.AccountUpd(id, pw, Me.loginId, accountChkResult.GsId)
 
         Try
@@ -513,15 +573,15 @@
             End If
 
             ' loginIdの更新
-            If chgLoginFlg AndAlso Not String.IsNullOrEmpty(Me.txtId.Text) Then
+            If chgLoginFlg AndAlso Not String.IsNullOrEmpty(Me.TxtId.Text) Then
 
-                Me.loginId = Me.txtId.Text
+                Me.loginId = Me.TxtId.Text
 
             End If
 
             ' txtId.TextとtxtPassword.Textの初期化
-            Me.txtId.Text = Nothing
-            Me.txtPassword.Text = Nothing
+            Me.TxtId.Text = Nothing
+            Me.TxtPassword.Text = Nothing
 
         Finally
 

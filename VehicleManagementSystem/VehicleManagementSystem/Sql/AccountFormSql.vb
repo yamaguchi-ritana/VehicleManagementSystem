@@ -1,21 +1,4 @@
-﻿Public Class AccountSearchSql
-
-    Function LoginAccountPwSearch(id As String, password As String) As String
-
-        Dim sql As New System.Text.StringBuilder()
-
-        sql.Append("SELECT ")
-        sql.Append("* ")
-        sql.Append("FROM ")
-        sql.Append("t_account ta ")
-        sql.Append("WHERE ")
-        sql.Append("ta.id = '" + id + "' ")
-        sql.Append("and ta.password = '" + password + "' ")
-        sql.Append(";")
-
-        Return sql.ToString
-
-    End Function
+﻿Public Class AccountFormSql
 
     Function AccountIdSearch(id As String) As String
 
@@ -116,7 +99,43 @@
 
     End Function
 
+    Function AccountInsert(id As String, password As String, userId As String) As String
 
+        Dim sql As New System.Text.StringBuilder()
 
+        sql.Append("INSERT INTO T_ACCOUNT ")
+        sql.Append("VALUES(")
+        sql.Append("'" + id + "', ")
+        sql.Append("'" + password + "', ")
+        sql.Append("'" + userId + "', ")
+        sql.Append("GETDATE(), ")
+        sql.Append("'" + userId + "', ")
+        sql.Append("GETDATE()")
+        sql.Append(");")
+        sql.Append("COMMIT TRAN")
+
+        Return sql.ToString
+
+    End Function
+
+    Function AccountUpd(id As String, password As String, chgId As String, updId As String) As String
+
+        Dim sql As New System.Text.StringBuilder()
+
+        sql.Append("UPDATE ")
+        sql.Append("t_account ")
+        sql.Append("SET ")
+        sql.Append("id =" + "'" + id + "', ")
+        sql.Append("password =" + "'" + password + "', ")
+        sql.Append("update_id =" + "'" + chgId + "', ")
+        sql.Append("update_date_time = " + "GETDATE() ")
+        sql.Append("WHERE ")
+        sql.Append("id = " + "'" + updId + "' ")
+        sql.Append(";")
+        sql.Append("COMMIT TRAN ")
+
+        Return sql.ToString
+
+    End Function
 
 End Class

@@ -1,4 +1,4 @@
-﻿Public Class VehicleInfoSql
+﻿Public Class VehicleInformationFormSql
     Function VehicleInfo(vehiclePk As Integer) As String
 
         Dim sql As New System.Text.StringBuilder()
