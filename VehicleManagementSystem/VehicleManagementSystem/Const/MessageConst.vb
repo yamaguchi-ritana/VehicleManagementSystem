@@ -68,6 +68,16 @@
 
     Private Const updAcct As String = "アカウントの更新"
 
+    Private Const delOtherUserChk As String = "他のユーザーに削除されています。"
+
+    Private Const acctDelSelfChk As String = "ログインユーザーは自身のアカウントを削除できません。"
+
+    Private Const acctDelSelfChkErr As String = "アカウント削除チェックエラー"
+
+    Private Const deledAcct As String = "アカウントを削除しました。"
+
+    Private Const delAcct As String = "アカウントの削除"
+
     Public ReadOnly Property GetEnterId() As String
         Get
             Return enterId
@@ -269,6 +279,36 @@
     Public ReadOnly Property GetUpdAcct() As String
         Get
             Return updAcct
+        End Get
+    End Property
+
+    Public ReadOnly Property GetDelOtherUserChk() As String
+        Get
+            Return delOtherUserChk
+        End Get
+    End Property
+
+    Public ReadOnly Property GetAcctDelSelfChk() As String
+        Get
+            Return acctDelSelfChk
+        End Get
+    End Property
+
+    Public ReadOnly Property GetAcctDelSelfChkErr() As String
+        Get
+            Return acctDelSelfChkErr
+        End Get
+    End Property
+
+    Public ReadOnly Property GetDeledAcct() As String
+        Get
+            Return deledAcct
+        End Get
+    End Property
+
+    Public ReadOnly Property GetDelAcct() As String
+        Get
+            Return delAcct
         End Get
     End Property
 

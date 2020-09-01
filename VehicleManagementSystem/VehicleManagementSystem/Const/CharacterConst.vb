@@ -36,6 +36,14 @@
 
     Private Const saturday As String = "土"
 
+    Private Const one As Integer = 0
+
+    Private Const two As Integer = 1
+
+    Private Const updFlg As Integer = 0
+
+    Private Const delFlg As Integer = 1
+
     Public ReadOnly Property GetHalfSpace() As String
         Get
             Return halfSpace
@@ -141,6 +149,30 @@
     Public ReadOnly Property GetSaturday() As String
         Get
             Return saturday
+        End Get
+    End Property
+
+    Public ReadOnly Property GetOne() As Integer
+        Get
+            Return one
+        End Get
+    End Property
+
+    Public ReadOnly Property GetTwo() As Integer
+        Get
+            Return two
+        End Get
+    End Property
+
+    Public ReadOnly Property GetUpdFlg() As Integer
+        Get
+            Return updFlg
+        End Get
+    End Property
+
+    Public ReadOnly Property GetDelFlg() As Integer
+        Get
+            Return delFlg
         End Get
     End Property
 

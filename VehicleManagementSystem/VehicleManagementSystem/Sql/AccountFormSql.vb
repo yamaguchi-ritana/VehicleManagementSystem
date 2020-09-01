@@ -138,4 +138,20 @@
 
     End Function
 
+    Function AccountDel(id As String) As String
+
+        Dim sql As New System.Text.StringBuilder()
+
+        sql.Append("DELETE ")
+        sql.Append("FROM ")
+        sql.Append("t_account ")
+        sql.Append("WHERE ")
+        sql.Append("id = " + "'" + id + "' ")
+        sql.Append(";")
+        sql.Append("COMMIT TRAN ")
+
+        Return sql.ToString
+
+    End Function
+
 End Class

@@ -137,22 +137,34 @@
     ' 更新ボタン押下処理
     Private Sub BtnUpdateClick(sender As Object, e As EventArgs) Handles btnUpdate.Click
 
+        ' メッセージ情報
+        Dim msgConst As New MessageConst
+
+        ' アカウントチェックの結果情報
+        Dim accChkResult As New AccountChkResultDto
+
+        ' 文字情報
+        Dim charConst As New CharacterConst
+
+        ' 更新フラグ
+        Dim updFlgt As Integer = charConst.GetUpdFlg
+
         ' DBへの接続
         Dim con As New SqlClient.SqlConnection With {
             .ConnectionString = Me.dbConnInfo.GetDBConnInfo
         }
 
-        ' アカウントチェックの結果情報
-        Dim accChkResult As New AccountChkResultDto
-
-        ' メッセージ情報
-        Dim msgConst As New MessageConst
-
         ' アカウントチェック処理
-        Me.UpdExtChk(con, msgConst, accChkResult)
+        Me.UpdExtChk(msgConst, accChkResult, charConst, updFlgt, con)
 
         ' アカウントの存在チェック
         If accChkResult.GsProcessEndFlg Then
+            ' アカウント情報の初期化
+            Me.acctDtoList = New List(Of AccountDto)
+
+            ' アカウント画面の表示処理
+            Me.AcctFrmLoad()
+
             Return
         End If
 
@@ -164,27 +176,39 @@
     ' 削除ボタン押下処理
     Private Sub BtnDelClick(sender As Object, e As EventArgs) Handles BtnDel.Click
 
-        ' DBへの接続
-        Dim con As New SqlClient.SqlConnection With {
-            .ConnectionString = Me.dbConnInfo.GetDBConnInfo
-        }
-
         ' メッセージ情報
         Dim msgConst As New MessageConst
 
         ' アカウントチェックの結果情報
         Dim accChkResult As New AccountChkResultDto
 
+        ' 文字情報
+        Dim charConst As New CharacterConst
+
+        ' 削除フラグ
+        Dim updFlgt As Integer = charConst.GetDelFlg
+
+        ' DBへの接続
+        Dim con As New SqlClient.SqlConnection With {
+            .ConnectionString = Me.dbConnInfo.GetDBConnInfo
+        }
+
         ' アカウントチェック処理
-        Me.UpdExtChk(con, msgConst, accChkResult)
+        Me.UpdExtChk(msgConst, accChkResult, charConst, updFlgt, con)
 
+        ' アカウントの存在チェック
+        If accChkResult.GsProcessEndFlg Then
+            ' アカウント情報の初期化
+            Me.acctDtoList = New List(Of AccountDto)
 
+            ' アカウント画面の表示処理
+            Me.AcctFrmLoad()
 
+            Return
+        End If
 
-
-
-        ' アカウント画面の表示処理
-        Me.AcctFrmLoad()
+        ' アカウント削除処理
+        Me.DelAcct(con, msgConst, accChkResult)
 
     End Sub
 
@@ -387,16 +411,18 @@
 
     End Sub
 
-    ' アカウント更新チェック処理
-    Private Sub UpdExtChk(con As SqlClient.SqlConnection, msgConst As MessageConst, accountChkResult As AccountChkResultDto)
+    ' アカウント更新・削除チェック処理
+    Private Sub UpdExtChk(msgConst As MessageConst, accountChkResult As AccountChkResultDto, charConst As CharacterConst, flg As Integer, con As SqlClient.SqlConnection)
 
         ' 入力チェック処理
         Dim chkTheInputCom As New CheckTheInputCommon
 
-        ' txtIdまたはtxtPassword未入力の場合はエラー
-        If Not chkTheInputCom.OneChkTheInput(Me.TxtId.Text, Me.TxtPassword.Text, msgConst.GetIdOrPwChk, msgConst.GetIdOrPwChkErr) Then
-            accountChkResult.GsProcessEndFlg = True
-            Return
+        If charConst.GetOne = flg Then
+            ' txtIdまたはtxtPassword未入力の場合はエラー
+            If Not chkTheInputCom.OneChkTheInput(Me.TxtId.Text, Me.TxtPassword.Text, msgConst.GetIdOrPwChk, msgConst.GetIdOrPwChkErr) Then
+                accountChkResult.GsProcessEndFlg = True
+                Return
+            End If
         End If
 
         ' 選択したデータグリッド行
@@ -408,11 +434,38 @@
             Return
         End If
 
-        ' 更新処理の確認
-        Dim result As DialogResult = MessageBox.Show(msgConst.GetAcctUpdChk, msgConst.GetAcctUpdCfm, MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
-        If result = DialogResult.Cancel Then
-            accountChkResult.GsProcessEndFlg = True
-            Return
+        ' ロードしたアカウント分処理
+        For Each accountDto As AccountDto In Me.acctDtoList
+
+            ' ロードしたアカウントと選択したアカウント
+            If accountDto.GsRowIndex = selectRow Then
+
+                If Me.loginId = accountDto.GsId AndAlso charConst.GetTwo = flg Then
+                    ' ログインユーザーが自身を削除する場合エラー
+                    MessageBox.Show(msgConst.GetAcctDelSelfChk, msgConst.GetAcctDelSelfChkErr, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    accountChkResult.GsProcessEndFlg = True
+                    Return
+                End If
+
+            End If
+
+        Next
+
+        If charConst.GetOne = flg Then
+            ' 更新処理の確認
+            Dim result As DialogResult = MessageBox.Show(msgConst.GetAcctUpdChk, msgConst.GetAcctUpdCfm, MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
+            If result = DialogResult.Cancel Then
+                accountChkResult.GsProcessEndFlg = True
+                Return
+            End If
+        Else
+            ' 削除処理の確認
+            Dim result As DialogResult = MessageBox.Show(msgConst.GetAcctDelChk, msgConst.GetAcctDelCfm, MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
+            If result = DialogResult.Cancel Then
+                accountChkResult.GsProcessEndFlg = True
+                Return
+            End If
+
         End If
 
         If accountChkResult.GsProcessEndFlg Then
@@ -477,10 +530,15 @@
                     con.Dispose()
                 End If
 
-                ' 他のユーザーが更新した場合エラー
-                MessageBox.Show(msgConst.GetUpdedOtherUserChk, msgConst.GetIdChkErr, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                accountChkResult.GsProcessEndFlg = True
-
+                If charConst.GetOne = flg Then
+                    ' 他のユーザーが更新した場合エラー
+                    MessageBox.Show(msgConst.GetUpdedOtherUserChk, msgConst.GetIdChkErr, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    accountChkResult.GsProcessEndFlg = True
+                Else
+                    ' 他のユーザーが削除した場合エラー
+                    MessageBox.Show(msgConst.GetDelOtherUserChk, msgConst.GetIdChkErr, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    accountChkResult.GsProcessEndFlg = True
+                End If
             Else
 
                 ' データのの読み込み
@@ -508,7 +566,7 @@
 
     End Sub
 
-    ' アカウント追加処理実行
+    ' アカウント更新処理実行
     Private Sub UpdAcct(con As SqlClient.SqlConnection, msgConst As MessageConst, accountChkResult As AccountChkResultDto)
 
         ' ログインユーザー更新フラグ
@@ -567,12 +625,108 @@
             ' sqlの設定解放
             accountChkResult.GsCommand.Dispose()
 
-            ' 追加処理が成功時に結果を表示
+            ' 更新処理が成功時に結果を表示
             If 0 < insResult Then
                 MessageBox.Show(msgConst.GetUpdedAcct, msgConst.GetUpdAcct, MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
             End If
 
             ' loginIdの更新
+            If chgLoginFlg AndAlso Not String.IsNullOrEmpty(Me.TxtId.Text) Then
+
+                Me.loginId = Me.TxtId.Text
+
+            End If
+
+            ' txtId.TextとtxtPassword.Textの初期化
+            Me.TxtId.Text = Nothing
+            Me.TxtPassword.Text = Nothing
+
+        Finally
+
+            ' コネクションの接続確認
+            If con.State <> ConnectionState.Closed Then
+
+                ' コネクションの破棄
+                con.Close()
+                con.Dispose()
+
+            End If
+
+        End Try
+
+        ' アカウント情報の初期化
+        Me.acctDtoList = New List(Of AccountDto)
+
+        ' アカウント画面の表示処理
+        Me.AcctFrmLoad()
+
+    End Sub
+
+    ' アカウント削除処理実行
+    Private Sub DelAcct(con As SqlClient.SqlConnection, msgConst As MessageConst, accountChkResult As AccountChkResultDto)
+
+        ' ログインユーザー削除フラグ
+        Dim chgLoginFlg As Boolean
+
+        ' 削除ID
+        Dim id As String
+
+        ' 削除PW
+        Dim pw As String
+
+        ' ログインユーザーの削除
+        If Me.loginId = accountChkResult.GsId Then
+
+            chgLoginFlg = True
+
+        End If
+
+        ' ログインユーザーIDの削除ではない
+        If String.IsNullOrEmpty(Me.TxtId.Text) Then
+
+            id = accountChkResult.GsId
+
+        Else　' ログインユーザーIDの削除
+
+            id = Me.TxtId.Text
+
+        End If
+
+        ' ログインユーザーPWの削除ではない
+        If String.IsNullOrEmpty(Me.TxtPassword.Text) Then
+
+            pw = accountChkResult.GsPw
+
+        Else ' ログインユーザーPWの削除
+
+            pw = Me.TxtPassword.Text
+
+        End If
+
+        ' sqlの結果を取得する
+        Dim accountSql As New AccountFormSql
+        Dim sql As String = accountSql.AccountDel(id)
+
+        Try
+
+            ' sql実行準備の設定
+            accountChkResult.GsCommand.CommandText = sql
+
+            ' sqlの実行結果数
+            Dim insResult As Integer
+
+            ' sql実行結果数の取得
+            insResult = accountChkResult.GsCommand.ExecuteNonQuery()
+
+            ' sqlの設定解放
+            accountChkResult.GsCommand.Dispose()
+
+            ' 削除処理が成功時に結果を表示
+            If 0 < insResult Then
+                MessageBox.Show(msgConst.GetdeledAcct, msgConst.GetdelAcct, MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+            End If
+
+            ' loginIdの削除
             If chgLoginFlg AndAlso Not String.IsNullOrEmpty(Me.TxtId.Text) Then
 
                 Me.loginId = Me.TxtId.Text
