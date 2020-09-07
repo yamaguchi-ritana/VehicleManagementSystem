@@ -286,20 +286,20 @@
     End Sub
 
     ' アカウントチェック処理
-    Private Sub AddExtChk(con As SqlClient.SqlConnection, msgConst As MessageConst, accountChkResult As AccountChkResultDto)
+    Private Sub AddExtChk(con As SqlClient.SqlConnection, msgConst As MessageConst, acctChkResult As AccountChkResultDto)
 
         ' 入力チェック
         Dim chkTheInputCom As New CheckTheInputCommon
 
         ' txtIdが未入力の場合はエラー
         If Not chkTheInputCom.CheckTheInput(Me.TxtId.Text, msgConst.GetEnterId, msgConst.GetIdInputChkErr) Then
-            accountChkResult.GsProcessEndFlg = True
+            acctChkResult.GsProcessEndFlg = True
             Return
         End If
 
         ' txtPasswordが未入力の場合はエラー
-        If Not accountChkResult.GsProcessEndFlg AndAlso Not chkTheInputCom.CheckTheInput(Me.TxtPassword.Text, msgConst.GetEnterPw, msgConst.GetPwInputChkErr) Then
-            accountChkResult.GsProcessEndFlg = True
+        If Not acctChkResult.GsProcessEndFlg AndAlso Not chkTheInputCom.CheckTheInput(Me.TxtPassword.Text, msgConst.GetEnterPw, msgConst.GetPwInputChkErr) Then
+            acctChkResult.GsProcessEndFlg = True
             Return
         End If
 
@@ -307,11 +307,11 @@
         Dim result As DialogResult = MessageBox.Show(msgConst.GetAcctAddChk, msgConst.GetAcctAddCfm, MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
 
         If result = DialogResult.Cancel Then
-            accountChkResult.GsProcessEndFlg = True
+            acctChkResult.GsProcessEndFlg = True
             Return
         End If
 
-        If accountChkResult.GsProcessEndFlg Then
+        If acctChkResult.GsProcessEndFlg Then
             ' コネクションの接続確認
             If con.State <> ConnectionState.Closed Then
 
@@ -344,8 +344,23 @@
 
             ' IDが存在する場合エラー
             If sdr.HasRows Then
+
+                ' ロックの解除
+                command.CommandText = acctSearchSql.CommitTran
+
+                ' sqlの設定解放
+                command.Dispose()
+
+                ' コネクションの接続確認
+                If con.State <> ConnectionState.Closed Then
+
+                    ' コネクションの破棄
+                    con.Close()
+                    con.Dispose()
+                End If
+
                 MessageBox.Show(msgConst.GetIdIsIncorrect, msgConst.GetIdChkErr, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                accountChkResult.GsProcessEndFlg = True
+                acctChkResult.GsProcessEndFlg = True
 
             End If
 
@@ -353,7 +368,7 @@
             sdr.Close()
 
             ' sql処理の設定の引継ぎ
-            accountChkResult.GsCommand = command
+            acctChkResult.GsCommand = command
 
         Catch ex As Exception ' Exception処理
 
@@ -412,7 +427,7 @@
     End Sub
 
     ' アカウント更新・削除チェック処理
-    Private Sub UpdExtChk(msgConst As MessageConst, accountChkResult As AccountChkResultDto, charConst As CharacterConst, flg As Integer, con As SqlClient.SqlConnection)
+    Private Sub UpdExtChk(msgConst As MessageConst, acctChkResult As AccountChkResultDto, charConst As CharacterConst, flg As Integer, con As SqlClient.SqlConnection)
 
         ' 入力チェック処理
         Dim chkTheInputCom As New CheckTheInputCommon
@@ -420,7 +435,7 @@
         If charConst.GetOne = flg Then
             ' txtIdまたはtxtPassword未入力の場合はエラー
             If Not chkTheInputCom.OneChkTheInput(Me.TxtId.Text, Me.TxtPassword.Text, msgConst.GetIdOrPwChk, msgConst.GetIdOrPwChkErr) Then
-                accountChkResult.GsProcessEndFlg = True
+                acctChkResult.GsProcessEndFlg = True
                 Return
             End If
         End If
@@ -430,7 +445,7 @@
 
         ' ユーザーを選択していない場合エラー
         If Not chkTheInputCom.IntEquivChk(Me.acctDtoList.Count, selectRow, msgConst.GetUserSlctChk, msgConst.GetUserSlctChkErr) Then
-            accountChkResult.GsProcessEndFlg = True
+            acctChkResult.GsProcessEndFlg = True
             Return
         End If
 
@@ -443,7 +458,7 @@
                 If Me.loginId = accountDto.GsId AndAlso charConst.GetTwo = flg Then
                     ' ログインユーザーが自身を削除する場合エラー
                     MessageBox.Show(msgConst.GetAcctDelSelfChk, msgConst.GetAcctDelSelfChkErr, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    accountChkResult.GsProcessEndFlg = True
+                    acctChkResult.GsProcessEndFlg = True
                     Return
                 End If
 
@@ -455,20 +470,20 @@
             ' 更新処理の確認
             Dim result As DialogResult = MessageBox.Show(msgConst.GetAcctUpdChk, msgConst.GetAcctUpdCfm, MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
             If result = DialogResult.Cancel Then
-                accountChkResult.GsProcessEndFlg = True
+                acctChkResult.GsProcessEndFlg = True
                 Return
             End If
         Else
             ' 削除処理の確認
             Dim result As DialogResult = MessageBox.Show(msgConst.GetAcctDelChk, msgConst.GetAcctDelCfm, MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
             If result = DialogResult.Cancel Then
-                accountChkResult.GsProcessEndFlg = True
+                acctChkResult.GsProcessEndFlg = True
                 Return
             End If
 
         End If
 
-        If accountChkResult.GsProcessEndFlg Then
+        If acctChkResult.GsProcessEndFlg Then
             ' コネクションの接続確認
             If con.State <> ConnectionState.Closed Then
 
@@ -486,16 +501,16 @@
             If accountDto.GsRowIndex = selectRow Then
 
                 ' アカウントチェックの結果情報
-                accountChkResult.GsId = accountDto.GsId
-                accountChkResult.GsUpdDtTime = accountDto.GsUpdDtTime
+                acctChkResult.GsId = accountDto.GsId
+                acctChkResult.GsUpdDtTime = accountDto.GsUpdDtTime
 
             End If
 
         Next
 
         ' sqlの生成
-        Dim accountSearchSql As New AccountFormSql
-        Dim sql As String = accountSearchSql.AccountIdSearchChk(accountChkResult.GsId, accountChkResult.GsUpdDtTime)
+        Dim acctFormSql As New AccountFormSql
+        Dim sql As String = acctFormSql.AccountIdSearchChk(acctChkResult.GsId, acctChkResult.GsUpdDtTime)
 
         Try
 
@@ -517,7 +532,7 @@
             If Not sdr.HasRows Then
 
                 ' ロックの解除
-                command.CommandText = accountSearchSql.CommitTran
+                command.CommandText = acctFormSql.CommitTran
 
                 ' sqlの設定解放
                 command.Dispose()
@@ -533,11 +548,11 @@
                 If charConst.GetOne = flg Then
                     ' 他のユーザーが更新した場合エラー
                     MessageBox.Show(msgConst.GetUpdedOtherUserChk, msgConst.GetIdChkErr, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    accountChkResult.GsProcessEndFlg = True
+                    acctChkResult.GsProcessEndFlg = True
                 Else
                     ' 他のユーザーが削除した場合エラー
                     MessageBox.Show(msgConst.GetDelOtherUserChk, msgConst.GetIdChkErr, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    accountChkResult.GsProcessEndFlg = True
+                    acctChkResult.GsProcessEndFlg = True
                 End If
             Else
 
@@ -545,8 +560,8 @@
                 While sdr.Read
 
                     ' アカウントチェックの結果情報
-                    accountChkResult.GsId = sdr("id")
-                    accountChkResult.GsPw = sdr("password")
+                    acctChkResult.GsId = sdr("id")
+                    acctChkResult.GsPw = sdr("password")
 
                 End While
 
@@ -555,8 +570,39 @@
             ' sql実行処理の破棄
             sdr.Close()
 
+            If Not acctChkResult.GsProcessEndFlg Then
+                command.CommandText = acctFormSql.AccountIdSearch(Me.TxtId.Text)
+                sdr = command.ExecuteReader()
+
+                ' 
+                If sdr.HasRows Then
+
+                    ' ロックの解除
+                    command.CommandText = acctFormSql.CommitTran
+
+                    ' sqlの設定解放
+                    command.Dispose()
+
+                    ' コネクションの接続確認
+                    If con.State <> ConnectionState.Closed Then
+
+                        ' コネクションの破棄
+                        con.Close()
+                        con.Dispose()
+                    End If
+
+                    MessageBox.Show(msgConst.GetIdIsIncorrect, msgConst.GetIdChkErr, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    acctChkResult.GsProcessEndFlg = True
+
+                End If
+
+            End If
+
+            ' sql実行処理の破棄
+            sdr.Close()
+
             ' sql処理の設定の引継ぎ
-            accountChkResult.GsCommand = command
+            acctChkResult.GsCommand = command
 
         Catch ex As Exception ' Exception処理
 
